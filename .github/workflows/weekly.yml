@@ -1,7 +1,7 @@
 name: Weekly Earnings Screener
 on:
   schedule:
-    - cron: '0 23 * * 0'
+    - cron: '0 23 * * 5'
   workflow_dispatch:
 
 jobs:

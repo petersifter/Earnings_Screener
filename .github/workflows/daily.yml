@@ -27,3 +27,23 @@ jobs:
           git add reports/
           git commit -m "Daily $(date +%Y-%m-%d)" || echo "nothing to commit"
           git push
+      - name: Email report
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Earnings Screener
+          to: ${{ secrets.MAIL_TO }}
+          subject: "Daily Earnings Screener — $(date +%Y-%m-%d)"
+          body: |
+            Daily earnings screener report attached.
+
+            Generated: $(date)
+
+            Open the attached file or view on GitHub:
+            https://github.com/petersifter/Earnings_Screener/tree/main/reports
+          attachments: reports/daily_$(date +%Y-%m-%d).txt	

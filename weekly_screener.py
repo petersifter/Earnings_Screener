@@ -1,5 +1,7 @@
 from finance_calendars import finance_calendars as fc
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+ET = ZoneInfo("America/New_York")
 import yfinance as yf
 import pandas as pd
 import warnings
@@ -17,7 +19,7 @@ print("  2. Next week")
 print("  3. Enter a specific Monday date")
 choice = input("\nChoice (1, 2, or 3): ").strip()
 
-today = datetime.now()
+today = datetime.now(ET).replace(tzinfo=None)
 
 if choice == "2":
     days_until_monday = (7 - today.weekday()) % 7

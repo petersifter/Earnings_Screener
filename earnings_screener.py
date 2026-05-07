@@ -1,5 +1,7 @@
 from finance_calendars import finance_calendars as fc
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+ET = ZoneInfo("America/New_York")
 import yfinance as yf
 import pandas as pd
 import warnings
@@ -18,7 +20,7 @@ choice = input("\nChoice (1 or 2): ").strip()
 
 if choice == "2":
     date_str = input("Enter date (YYYY-MM-DD): ").strip()
-    invest_day = datetime.strptime(date_str, "%Y-%m-%d")
+    invest_day = datetime.now(ET).replace(tzinfo=None) + timedelta(days=1)
 else:
     invest_day = datetime.now() + timedelta(days=1)
 

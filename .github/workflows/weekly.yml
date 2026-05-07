@@ -26,6 +26,9 @@ jobs:
           git add reports/
           git commit -m "Weekly $(date +%Y-%m-%d)" || echo "nothing to commit"
           git push
+      - name: Set date variable
+        if: success()
+        run: echo "TODAY=$(date +%Y-%m-%d)" >> $GITHUB_ENV
       - name: Email report
         if: success()
         uses: dawidd6/action-send-mail@v3
@@ -37,12 +40,12 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Earnings Screener
           to: ${{ secrets.MAIL_TO }}
-          subject: "Weekly Earnings Screener — $(date +%Y-%m-%d)"
+          subject: "Weekly Earnings Screener — ${{ env.TODAY }}"
           body: |
             Weekly earnings screener report attached.
 
-            Generated: $(date)
+            Generated: ${{ env.TODAY }}
 
-            Open the attached file or view on GitHub:
+            View on GitHub:
             https://github.com/petersifter/Earnings_Screener/tree/main/reports
-          attachments: reports/weekly_$(date +%Y-%m-%d).txt
+          attachments: reports/weekly_${{ env.TODAY }}.txt

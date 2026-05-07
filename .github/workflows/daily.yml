@@ -18,7 +18,7 @@ jobs:
       - name: Run screener
         run: |
           mkdir -p reports
-          python earnings_screener.py 2>&1 | tee reports/daily_$(date +%Y-%m-%d).txt
+          echo "1" | python earnings_screener.py 2>&1 | tee reports/daily_$(date +%Y-%m-%d).txt
       - name: Save report
         run: |
           git config user.name "github-actions"

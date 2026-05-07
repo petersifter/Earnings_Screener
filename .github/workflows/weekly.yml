@@ -18,7 +18,7 @@ jobs:
       - name: Run screener
         run: |
           mkdir -p reports
-          python weekly_screener.py > reports/weekly_$(date +%Y-%m-%d).txt 2>&1
+          echo "2" | python weekly_screener.py 2>&1 | tee reports/weekly_$(date +%Y-%m-%d).txt
       - name: Save report
         run: |
           git config user.name "github-actions"

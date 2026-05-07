@@ -221,6 +221,23 @@ for ticker in tickers:
 print(f"Screening complete.                    ")
 
 # -------------------------------------------
+# Headline summary
+# -------------------------------------------
+# Sort first so headline shows strongest names first
+buy_list_sorted = sorted(buy_list, key=lambda x: x["Avg Move"], reverse=True)
+short_list_sorted = sorted(short_list, key=lambda x: x["Avg Move"])
+
+print(f"\n{'#'*60}")
+print(f"#  HEADLINE — Week of {monday.strftime('%Y-%m-%d')}")
+print(f"#  Scanned {len(tickers)} stocks. Qualified: {len(buy_list)} BUY / {len(short_list)} SHORT")
+if buy_list_sorted:
+    print(f"#  BUY:   {', '.join([s['Ticker'] for s in buy_list_sorted])}")
+if short_list_sorted:
+    print(f"#  SHORT: {', '.join([s['Ticker'] for s in short_list_sorted])}")
+if not buy_list and not short_list:
+    print(f"#  No stocks qualified this week.")
+print(f"{'#'*60}")
+# -------------------------------------------
 # Sort and output
 # -------------------------------------------
 pd.set_option("display.width", 400)

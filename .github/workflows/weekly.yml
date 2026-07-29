@@ -7,6 +7,7 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    timeout-minutes: 300
     permissions:
       contents: write
     steps:
@@ -15,20 +16,41 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt
+
+      # This run regularly takes over an hour and crosses midnight UTC, which
+      # is exactly what used to break the attachment: the file was named with
+      # Friday's date and the email looked for Saturday's. Python owns the
+      # filename now.
       - name: Run screener
         run: |
-          mkdir -p reports
-          echo "2" | python weekly_screener.py 2>&1 | tee reports/weekly_$(date +%Y-%m-%d).txt
+          set -o pipefail
+          echo "2" | python weekly_screener.py
+
+      - name: Load report metadata
+        run: |
+          if [ ! -f .last_run ]; then
+            echo "::error::Screener finished without writing .last_run"
+            exit 1
+          fi
+          cat .last_run >> $GITHUB_ENV
+          cat .last_run
+
+      - name: Verify report exists
+        run: |
+          if [ ! -s "${{ env.REPORT_FILE }}" ]; then
+            echo "::error::Report file missing or empty: ${{ env.REPORT_FILE }}"
+            ls -la reports/ || true
+            exit 1
+          fi
+
       - name: Save report
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add reports/
-          git commit -m "Weekly $(date +%Y-%m-%d)" || echo "nothing to commit"
+          git commit -m "Weekly ${{ env.REPORT_NAME }}" || echo "nothing to commit"
           git push
-      - name: Set date variable
-        if: success()
-        run: echo "TODAY=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
       - name: Email report
         if: success()
         uses: dawidd6/action-send-mail@v3
@@ -40,12 +62,31 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Earnings Screener
           to: ${{ secrets.MAIL_TO }}
-          subject: "Weekly Earnings Screener — ${{ env.TODAY }}"
+          subject: "Weekly Screener — ${{ env.SESSION }}"
           body: |
-            Weekly earnings screener report attached.
+            ${{ env.HEADLINE }}
 
-            Generated: ${{ env.TODAY }}
+            Coverage: ${{ env.SESSION }}
+            Attached: ${{ env.REPORT_NAME }}
 
             View on GitHub:
             https://github.com/petersifter/Earnings_Screener/tree/main/reports
-          attachments: reports/weekly_${{ env.TODAY }}.txt
+          attachments: ${{ env.REPORT_FILE }}
+
+      - name: Email failure notice
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Earnings Screener
+          to: ${{ secrets.MAIL_TO }}
+          subject: "Weekly Screener FAILED"
+          body: |
+            The weekly screener run did not complete.
+
+            Logs:
+            https://github.com/petersifter/Earnings_Screener/actions/runs/${{ github.run_id }}

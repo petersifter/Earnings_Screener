@@ -8,6 +8,7 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     permissions:
       contents: write
     steps:
@@ -16,20 +17,40 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt
+
+      # The screener writes reports/<name>.txt itself and drops a .last_run
+      # file of KEY=value lines. No shell date arithmetic anywhere, so a run
+      # that crosses midnight UTC can no longer misname the attachment.
       - name: Run screener
         run: |
-          mkdir -p reports
-          echo "1" | python earnings_screener.py 2>&1 | tee reports/daily_$(date +%Y-%m-%d).txt
+          set -o pipefail
+          echo "1" | python earnings_screener.py
+
+      - name: Load report metadata
+        run: |
+          if [ ! -f .last_run ]; then
+            echo "::error::Screener finished without writing .last_run"
+            exit 1
+          fi
+          cat .last_run >> $GITHUB_ENV
+          cat .last_run
+
+      - name: Verify report exists
+        run: |
+          if [ ! -s "${{ env.REPORT_FILE }}" ]; then
+            echo "::error::Report file missing or empty: ${{ env.REPORT_FILE }}"
+            ls -la reports/ || true
+            exit 1
+          fi
+
       - name: Save report
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add reports/
-          git commit -m "Daily $(date +%Y-%m-%d)" || echo "nothing to commit"
+          git commit -m "Daily ${{ env.REPORT_NAME }}" || echo "nothing to commit"
           git push
-      - name: Set date variable
-        if: success()
-        run: echo "TODAY=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
       - name: Email report
         if: success()
         uses: dawidd6/action-send-mail@v3
@@ -41,12 +62,33 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Earnings Screener
           to: ${{ secrets.MAIL_TO }}
-          subject: "Daily Earnings Screener — ${{ env.TODAY }}"
+          subject: "Daily Screener — ${{ env.SESSION }}"
           body: |
-            Daily earnings screener report attached.
+            ${{ env.HEADLINE }}
 
-            Generated: ${{ env.TODAY }}
+            Session: ${{ env.SESSION }}
+            Attached: ${{ env.REPORT_NAME }}
 
             View on GitHub:
             https://github.com/petersifter/Earnings_Screener/tree/main/reports
-          attachments: reports/daily_${{ env.TODAY }}.txt	
+          attachments: ${{ env.REPORT_FILE }}
+
+      # Fires only if something above broke, so silence never looks like
+      # "no stocks qualified" again.
+      - name: Email failure notice
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Earnings Screener
+          to: ${{ secrets.MAIL_TO }}
+          subject: "Daily Screener FAILED"
+          body: |
+            The daily screener run did not complete.
+
+            Logs:
+            https://github.com/petersifter/Earnings_Screener/actions/runs/${{ github.run_id }}

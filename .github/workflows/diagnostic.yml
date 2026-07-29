@@ -1,0 +1,19 @@
+# One-click cloud diagnostic. Run this from the Actions tab and compare the
+# output against `python diagnose.py` on your own machine. Sends nothing and
+# commits nothing — it only reports what the runner can reach.
+name: Screener Diagnostic
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Diagnose
+        run: python diagnose.py

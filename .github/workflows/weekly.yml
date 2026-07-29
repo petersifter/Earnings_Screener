@@ -16,40 +16,42 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt
+      - run: pip list | grep -Ei "yfinance|pandas|curl|finance-calendars"
 
-      # This run regularly takes over an hour and crosses midnight UTC, which
-      # is exactly what used to break the attachment: the file was named with
-      # Friday's date and the email looked for Saturday's. Python owns the
-      # filename now.
+      # The screener writes reports/<name>.txt itself and drops .last_run with
+      # KEY=value lines. No shell date arithmetic, so a run crossing midnight
+      # UTC can no longer misname the attachment. Exits 1 if the data source
+      # failed, rather than emitting an empty list that reads like a result.
       - name: Run screener
+        env:
+          SCREENER_SPACING: '0.5'
         run: |
           set -o pipefail
           echo "2" | python weekly_screener.py
 
+      # always() so the failure email can still attach the diagnosis.
       - name: Load report metadata
+        if: always()
         run: |
-          if [ ! -f .last_run ]; then
-            echo "::error::Screener finished without writing .last_run"
-            exit 1
-          fi
-          cat .last_run >> $GITHUB_ENV
-          cat .last_run
-
-      - name: Verify report exists
-        run: |
-          if [ ! -s "${{ env.REPORT_FILE }}" ]; then
-            echo "::error::Report file missing or empty: ${{ env.REPORT_FILE }}"
-            ls -la reports/ || true
-            exit 1
+          if [ -f .last_run ]; then
+            cat .last_run >> $GITHUB_ENV
+            cat .last_run
+          else
+            echo "::warning::no .last_run written"
           fi
 
       - name: Save report
+        if: always()
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add reports/
-          git commit -m "Weekly ${{ env.REPORT_NAME }}" || echo "nothing to commit"
-          git push
+          if [ -n "$(git status --porcelain reports/)" ]; then
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add reports/
+            git commit -m "Weekly ${{ env.REPORT_NAME }}"
+            git push
+          else
+            echo "nothing to commit"
+          fi
 
       - name: Email report
         if: success()
@@ -73,6 +75,8 @@ jobs:
             https://github.com/petersifter/Earnings_Screener/tree/main/reports
           attachments: ${{ env.REPORT_FILE }}
 
+      # Fires when the run broke or the data source failed. Silence and an
+      # empty list are no longer indistinguishable.
       - name: Email failure notice
         if: failure()
         uses: dawidd6/action-send-mail@v3
@@ -84,9 +88,18 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Earnings Screener
           to: ${{ secrets.MAIL_TO }}
-          subject: "Weekly Screener FAILED"
+          subject: "Weekly Screener FAILED — ${{ env.SESSION }}"
           body: |
-            The weekly screener run did not complete.
+            The weekly screener did not produce a usable result.
+
+            ${{ env.HEADLINE }}
+
+            If this says DATA FAILURE, the report is attached and its
+            SCREENING NOTES section shows the failure rate and the exact
+            yfinance version the runner installed. Compare that against
+            your local venv:  pip show yfinance
 
             Logs:
             https://github.com/petersifter/Earnings_Screener/actions/runs/${{ github.run_id }}
+          attachments: ${{ env.REPORT_FILE }}
+          ignore_unmatched: true

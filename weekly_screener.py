@@ -10,17 +10,8 @@ warnings.filterwarnings("ignore")
 from implied_move import get_implied_move
 from options_activity import get_options_activity
 from report_utils import Report, LEGEND, progress, progress_done, truncate
-
-
-def get_eps_history(stock):
-    """Ask for 24 rows so upcoming quarters don't eat into the 8 we need."""
-    try:
-        return stock.get_earnings_dates(limit=24)
-    except Exception:
-        try:
-            return stock.earnings_dates
-        except Exception:
-            return None
+from yf_fetch import (fetch_eps_history, fetch_history, CircuitBreaker,
+                      environment_report, RATE_LIMITED)
 
 
 # -------------------------------------------
@@ -91,8 +82,10 @@ print(f"\nTotal unique stocks: {len(tickers)}")
 buy_list = []
 short_list = []
 moves_detail = {}
-skipped = {"no eps data": 0, "under 8 quarters": 0, "no price data": 0,
-           "failed filters": 0}
+skipped = {"failed filters": 0, "under 8 quarters": 0,
+           "eps fetch failed": 0, "price fetch failed": 0}
+breaker = CircuitBreaker(check_after=20)
+aborted = False
 
 # -------------------------------------------
 # Step 2: Analyze
@@ -115,15 +108,19 @@ for count, ticker in enumerate(tickers, start=1):
     else:
         timing_str = "TBD"
 
-    try:
-        stock = yf.Ticker(ticker)
-    except Exception:
-        skipped["no eps data"] += 1
-        continue
+    ed, reason, stock = fetch_eps_history(ticker, limit=24)
+    breaker.record(reason)
 
-    ed = get_eps_history(stock)
-    if ed is None or ed.empty:
-        skipped["no eps data"] += 1
+    if breaker.tripped:
+        progress_done()
+        print(f"\n!! ABORTING after {breaker.attempted} tickers: every request "
+              f"returned no data.")
+        print(f"   {breaker.diagnosis()}")
+        aborted = True
+        break
+
+    if reason is not None:
+        skipped["eps fetch failed"] += 1
         continue
 
     reported = ed[ed["Reported EPS"].notna()].copy()
@@ -141,16 +138,12 @@ for count, ticker in enumerate(tickers, start=1):
 
     earnings_dates_list = last_8.index.tolist()
 
-    try:
-        min_date = min(earnings_dates_list) - timedelta(days=5)
-        max_date = max(earnings_dates_list) + timedelta(days=5)
-        prices = stock.history(start=min_date, end=max_date)
-    except Exception:
-        skipped["no price data"] += 1
-        continue
-
-    if prices is None or prices.empty:
-        skipped["no price data"] += 1
+    # Single fetch covering the whole earnings window AND the momentum window.
+    # Two separate calls per ticker was roughly 40 extra requests per run.
+    min_date = min(earnings_dates_list) - timedelta(days=5)
+    prices, reason = fetch_history(stock, start=min_date, end=datetime.now())
+    if reason is not None:
+        skipped["price fetch failed"] += 1
         continue
 
     prices.index = prices.index.tz_localize(None)
@@ -172,7 +165,7 @@ for count, ticker in enumerate(tickers, start=1):
 
     valid_moves = [m for m in moves if m is not None]
     if len(valid_moves) < 8:
-        skipped["no price data"] += 1
+        skipped["price fetch failed"] += 1
         continue
 
     positive_count = sum(1 for m in valid_moves if m > 0)
@@ -181,19 +174,12 @@ for count, ticker in enumerate(tickers, start=1):
     avg_abs_move = round(sum(abs(m) for m in valid_moves) / len(valid_moves), 2)
     moves_str = ", ".join(f"{m:+.2f}%" if m is not None else "N/A" for m in moves)
 
-    try:
-        recent_prices = stock.history(period="3mo")
-    except Exception:
-        skipped["no price data"] += 1
+    if len(prices) < 22:
+        skipped["price fetch failed"] += 1
         continue
 
-    if recent_prices is None or len(recent_prices) < 22:
-        skipped["no price data"] += 1
-        continue
-
-    recent_prices.index = recent_prices.index.tz_localize(None)
-    price_30d_ago = recent_prices["Close"].iloc[-21]
-    price_now = recent_prices["Close"].iloc[-1]
+    price_30d_ago = prices["Close"].iloc[-21]
+    price_now = prices["Close"].iloc[-1]
     momentum_30d = round((price_now - price_30d_ago) / price_30d_ago * 100, 2)
 
     is_buy = eps_beats >= 6 and positive_count >= 6 and avg_move > 0 and momentum_30d > 0
@@ -267,6 +253,14 @@ report.banner(
     ],
 )
 report.blank()
+if aborted:
+    report.add("  " + "!" * 74)
+    report.add("  !!  DATA FAILURE \u2014 THIS IS NOT A SCREENING RESULT")
+    report.add(f"  !!  Aborted after {breaker.attempted} tickers, all returning no data.")
+    report.add("  !!  The lists below are empty because the data source failed,")
+    report.add("  !!  not because nothing qualified. See SCREENING NOTES.")
+    report.add("  " + "!" * 74)
+    report.blank()
 report.add(f"  UNIVERSE     {len(tickers):>4} unique names across the week")
 for label, n in day_counts:
     report.add(f"                 {label:<22} {n:>4}")
@@ -276,7 +270,7 @@ if buy_list:
     report.add(f"  BUY          {', '.join(r['Ticker'] for r in buy_list)}")
 if short_list:
     report.add(f"  SHORT        {', '.join(r['Ticker'] for r in short_list)}")
-if not buy_list and not short_list:
+if not buy_list and not short_list and not aborted:
     report.add(f"  RESULT       No stocks qualified this week.")
 
 report.section(f"\u25b2  BUY LIST \u2014 {len(buy_list)} names, strongest first")
@@ -297,21 +291,40 @@ for line in LEGEND:
 
 report.section("SCREENING NOTES")
 report.add(f"  Of {len(tickers)} names in the universe:")
-report.add(f"    {skipped['failed filters']:>4}  did not meet the filters")
-report.add(f"    {skipped['under 8 quarters']:>4}  had fewer than 8 reported quarters available")
-report.add(f"    {skipped['no eps data']:>4}  returned no EPS history")
-report.add(f"    {skipped['no price data']:>4}  returned incomplete price history")
+report.add(f"    {skipped['failed filters']:>5}  did not meet the filters")
+report.add(f"    {skipped['under 8 quarters']:>5}  had fewer than 8 reported quarters available")
+report.add(f"    {skipped['eps fetch failed']:>5}  EPS fetch failed")
+report.add(f"    {skipped['price fetch failed']:>5}  price fetch failed")
 report.blank()
-report.add("  A high count in the last three lines usually means the data")
-report.add("  provider was throttling, not that the names were unsuitable.")
+if breaker.attempted:
+    report.add(f"  Data fetch failure rate: {breaker.failure_rate * 100:.0f}%"
+               f"  ({breaker.fetch_failures} of {breaker.attempted} attempted)")
+    if breaker.rate_limited:
+        report.add(f"  Rate-limited responses: {breaker.rate_limited}")
+if aborted:
+    report.blank()
+    report.add("  *** RUN ABORTED \u2014 THIS IS NOT A SCREENING RESULT ***")
+    report.add(f"  {breaker.diagnosis()}")
+elif breaker.failure_rate > 0.25:
+    report.blank()
+    report.add("  Fetch failures above 25% mean this list is incomplete.")
+    report.add("  Names may have been dropped for lack of data, not merit.")
 report.blank()
 report.add("  Weekly runs include names whose reporting time is still TBD;")
 report.add("  the daily screener only takes confirmed AMC and BMO.")
+report.blank()
+report.add("  ENVIRONMENT")
+for line in environment_report():
+    report.add(f"    {line}")
 
 # -------------------------------------------
 # Write + export
 # -------------------------------------------
-headline = f"{len(tickers)} scanned \u00b7 {len(buy_list)} BUY \u00b7 {len(short_list)} SHORT"
+if aborted:
+    headline = (f"DATA FAILURE \u2014 aborted after {breaker.attempted} tickers, "
+                f"no usable EPS data. Not a screening result.")
+else:
+    headline = f"{len(tickers)} scanned \u00b7 {len(buy_list)} BUY \u00b7 {len(short_list)} SHORT"
 if buy_list:
     headline += " \u00b7 BUY: " + ", ".join(r["Ticker"] for r in buy_list)
 if short_list:
@@ -321,3 +334,6 @@ report.set_meta("HEADLINE", headline)
 path = report.write()
 report.echo()
 print(f"\nReport saved to {path}")
+
+if aborted:
+    raise SystemExit(1)

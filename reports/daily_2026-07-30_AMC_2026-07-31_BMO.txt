@@ -1,0 +1,56 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                          DAILY EARNINGS SCREENER                           ║
+║                    AMC 2026-07-30   ·   BMO 2026-07-31                     ║
+║                       generated 2026-07-29 18:02 ET                        ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+  UNIVERSE      160 confirmed reports   (106 AMC · 54 BMO)
+  QUALIFIED       0 BUY   ·   0 SHORT
+  RESULT       No stocks qualified for this session.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  No stocks qualified.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  No stocks qualified.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  FILTERS — all three must pass for a name to appear above
+
+    1. EPS        6+/8 beats  (BUY)   ·  6+/8 misses  (SHORT)
+    2. Reaction   6+/8 next-day closes up (BUY) or down (SHORT),
+                  and the average next-day move pointing the same way
+    3. Momentum   30-day pre-earnings price change positive (BUY)
+                  or negative (SHORT)
+
+  INFORMATIONAL — shown for context, does not filter anything
+
+    AvgMove   average signed next-day move over the last 8 reports
+    Mom30d    price change over the ~21 trading days into earnings
+    IM        implied move from the ATM straddle, as % of spot
+    IM/H      implied move ÷ historical average absolute move
+                RICH   > 1.15   options pricing a bigger move than history
+                FAIR   0.85–1.15
+                CHEAP  < 0.85   options pricing a smaller move than history
+    P/C       put volume ÷ call volume
+                < 0.70 bullish  ·  0.70–1.00 neutral  ·  > 1.00 bearish
+    Vol/OI    option volume ÷ open interest
+                > 1.00 fresh positioning  ·  < 0.50 quiet
+
+  Straddle pricing comes from the first expiration strictly after the
+  report date, so an AMC name is measured against the expiry that
+  actually carries the event.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Of 160 names in the universe:
+       0  did not meet the filters
+       0  had fewer than 8 reported quarters available
+     160  returned no EPS history
+       0  returned incomplete price history
+
+  A high count in the last three lines usually means the data
+  provider was throttling, not that the names were unsuitable.

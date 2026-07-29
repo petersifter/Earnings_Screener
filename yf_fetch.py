@@ -80,6 +80,14 @@ def _retry(fn, retries=3, base=1.5):
     return None, last
 
 
+def yahoo_symbol(ticker):
+    """
+    Yahoo writes share classes with a hyphen: MOG-A, not MOG.A. The NASDAQ
+    calendar uses dots, so MOG.A and MOG.B came back "possibly delisted".
+    """
+    return str(ticker).strip().upper().replace(".", "-")
+
+
 def pace():
     """Spacing between tickers, so a 160-name run is a trickle not a burst."""
     if REQUEST_SPACING > 0:
@@ -96,7 +104,7 @@ def fetch_eps_history(ticker, limit=24, retries=3):
     Returns (DataFrame, reason).
     """
     pace()
-    stock = yf.Ticker(ticker)
+    stock = yf.Ticker(yahoo_symbol(ticker))
 
     def call():
         try:

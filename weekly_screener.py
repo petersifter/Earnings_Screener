@@ -7,7 +7,7 @@ import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")
 
-from implied_move import get_implied_move
+from implied_move import get_implied_move, realized_daily_vol
 from options_activity import get_options_activity
 from report_utils import Report, LEGEND, progress, progress_done, truncate
 from yf_fetch import (fetch_eps_history, fetch_history, CircuitBreaker,
@@ -189,24 +189,35 @@ for count, ticker in enumerate(tickers, start=1):
         skipped["failed filters"] += 1
         continue
 
-    im = get_implied_move(ticker, report_date, avg_abs_move)
-    oa = get_options_activity(ticker, report_date)
+    dvol = realized_daily_vol(prices, earnings_dates_list)
+    im = get_implied_move(ticker, report_date, avg_abs_move,
+                          daily_vol_pct=dvol, timing=timing_str)
+    oa = get_options_activity(ticker, report_date, timing=timing_str)
 
     row = {
         "Ticker": ticker,
-        "Company": truncate(company_name, 22),
+        "Company": truncate(company_name, 18),
         "Date": report_date,
         "Time": timing_str,
         "EPS": f"{eps_beats}/8" if is_buy else f"{eps_misses}/8",
         "React": f"{positive_count}/8" if is_buy else f"{negative_count}/8",
         "AvgMove": f"{avg_move:+.2f}%",
+        "AbsMove": f"{avg_abs_move:.2f}%",
         "Mom30d": f"{momentum_30d:+.2f}%",
         "IM": f"{im['implied_move_pct']:.2f}%" if im["implied_move_pct"] is not None else "N/A",
+        "DTE": im["dte"] if im.get("dte") is not None else "-",
         "IM/H": f"{im['ratio']}" if im["ratio"] is not None else "N/A",
         "Flag": im["flag"] or "-",
-        "P/C": f"{oa['put_call_ratio']}" if oa["put_call_ratio"] is not None else "N/A",
-        "Vol/OI": f"{oa['vol_oi_ratio']}" if oa["vol_oi_ratio"] is not None else "N/A",
+        "OptVol": (f"{oa['total_volume']:,}" if oa.get("total_volume") is not None
+                   else "N/A"),
+        "P/C": ("thin" if oa.get("thin")
+                else f"{oa['put_call_ratio']}" if oa["put_call_ratio"] is not None
+                else "N/A"),
+        "Vol/OI": ("thin" if oa.get("thin")
+                   else f"{oa['vol_oi_ratio']}" if oa["vol_oi_ratio"] is not None
+                   else "N/A"),
         "_sort": avg_move,
+        "_abs": avg_abs_move,
     }
     moves_detail[ticker] = moves_str
 
@@ -236,11 +247,14 @@ COLUMNS = [
     ("Time", "Time", "<"),
     ("EPS", "EPS", ">"),
     ("React", "React", ">"),
-    ("AvgMove", "AvgMove", ">"),
-    ("Mom30d", "Mom30d", ">"),
+    ("AvgMove", "Avg", ">"),
+    ("AbsMove", "|Avg|", ">"),
+    ("Mom30d", "Mom", ">"),
     ("IM", "IM", ">"),
+    ("DTE", "DTE", ">"),
     ("IM/H", "IM/H", ">"),
     ("Flag", "Flag", "<"),
+    ("OptVol", "OptVol", ">"),
     ("P/C", "P/C", ">"),
     ("Vol/OI", "Vol/OI", ">"),
 ]
@@ -278,6 +292,15 @@ report.table(buy_list, COLUMNS)
 
 report.section(f"\u25bc  SHORT LIST \u2014 {len(short_list)} names, strongest first")
 report.table(short_list, COLUMNS)
+
+low = [r for r in buy_list + short_list if r.get("_abs", 99) < 1.5]
+if low:
+    report.blank()
+    report.add("  LOW MOVERS \u2014 average absolute move under 1.5%:")
+    for r in low:
+        report.add(f"    {r['Ticker']:<8}{r['_abs']:.2f}%   little room for an "
+                   f"earnings move to pay for the risk")
+    report.add("  Informational only. Not filtered out.")
 
 if moves_detail:
     report.section("NEXT-DAY MOVE HISTORY \u2014 newest first")

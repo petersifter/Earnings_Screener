@@ -22,8 +22,11 @@ trading day. Pre-market it reflects yesterday's final volume.
 import yfinance as yf
 from datetime import datetime
 
+from yf_fetch import yahoo_symbol
 
-def get_options_activity(ticker, earnings_date):
+
+def get_options_activity(ticker, earnings_date, timing='AMC',
+                         min_volume=250):
     """
     Compute put/call and volume/OI ratios for the front-month expiration.
 
@@ -43,6 +46,8 @@ def get_options_activity(ticker, earnings_date):
         'total_call_volume': None,
         'total_put_volume': None,
         'total_oi': None,
+        'total_volume': None,
+        'thin': False,
         'expiration': None,
         'error': None,
     }
@@ -53,16 +58,19 @@ def get_options_activity(ticker, earnings_date):
         elif hasattr(earnings_date, 'date') and callable(earnings_date.date):
             earnings_date = earnings_date.date()
 
-        tk = yf.Ticker(ticker)
+        tk = yf.Ticker(yahoo_symbol(ticker))
         expirations = tk.options
         if not expirations:
             result['error'] = 'no options chain available'
             return result
 
+        # AMC settles before a same-day expiry, BMO settles after it. Same
+        # rule as implied_move.py — a BMO name needs the same-day chain.
+        same_day_ok = str(timing).upper() == 'BMO'
         target_exp = None
         for exp_str in expirations:
             exp_date = datetime.strptime(exp_str, '%Y-%m-%d').date()
-            if exp_date > earnings_date:
+            if exp_date > earnings_date or (same_day_ok and exp_date == earnings_date):
                 target_exp = exp_str
                 break
 
@@ -87,6 +95,17 @@ def get_options_activity(ticker, earnings_date):
         result['total_call_volume'] = call_vol
         result['total_put_volume'] = put_vol
         result['total_oi'] = call_oi + put_oi
+        result['total_volume'] = call_vol + put_vol
+
+        # Below this, the ratios are arithmetic on a handful of contracts.
+        # Observed live: CBOE's chain carried 74 calls and 120 puts, which
+        # produced a confident-looking 1.62 "BEARISH" out of 194 contracts.
+        # A ratio is only reported once there is enough volume to mean anything.
+        if result['total_volume'] < min_volume:
+            result['thin'] = True
+            result['error'] = (f"only {result['total_volume']} contracts traded "
+                               f"(floor {min_volume}) \u2014 ratios not meaningful")
+            return result
 
         # Put/Call ratio
         if call_vol > 0:

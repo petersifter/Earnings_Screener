@@ -4,10 +4,13 @@ from datetime import datetime, timedelta
 import warnings
 warnings.filterwarnings("ignore")
 
-from implied_move import get_implied_move
+from implied_move import get_implied_move, realized_daily_vol
 from options_activity import get_options_activity
 
 ticker = input("Enter ticker: ").strip().upper()
+timing = (input("Reports AMC or BMO? [AMC]: ").strip().upper() or "AMC")
+if timing not in ("AMC", "BMO"):
+    timing = "AMC"
 
 print(f"\nAnalyzing {ticker}...\n")
 
@@ -149,21 +152,37 @@ print(f"    Avg |move|: {avg_abs_move:.2f}%")
 # -------------------------------------------
 # Implied move (from options chain)
 # -------------------------------------------
-print(f"\n  IMPLIED MOVE (from ATM straddle):")
+print(f"\n  IMPLIED MOVE (from ATM straddle, {timing}):")
 if next_earnings == "Unknown":
     print(f"    N/A — no upcoming earnings date available")
 elif not valid_moves:
     print(f"    N/A — no historical moves to compare against")
 else:
-    im = get_implied_move(ticker, next_earnings, avg_abs_move)
+    dvol = realized_daily_vol(prices, earnings_dates_list)
+    im = get_implied_move(ticker, next_earnings, avg_abs_move,
+                          daily_vol_pct=dvol, timing=timing)
     if im['error']:
         print(f"    N/A — {im['error']}")
     else:
-        print(f"    Expiration used: {im['expiration']}")
+        dte = f"  ({im['dte']}d after earnings)" if im.get('dte') is not None else ""
+        print(f"    Expiration used: {im['expiration']}{dte}")
         print(f"    Spot: ${im['spot']:.2f}  |  ATM strike: ${im['atm_strike']:.2f}")
-        print(f"    Straddle price: ${im['straddle_price']:.2f}")
-        print(f"    Implied move: {im['implied_move_pct']:.2f}%")
+        if im.get('strike_offset_pct'):
+            print(f"    Strike offset from spot: {im['strike_offset_pct']:.2f}%")
+        print(f"    Straddle price: ${im['straddle_price']:.2f}"
+              f"  (intrinsic stripped before the move calc)")
+        print(f"    Implied move: {im['implied_move_pct']:.2f}%  (total, to expiry)")
+        if dvol:
+            print(f"    Baseline daily vol: {dvol:.2f}%  (earnings days excluded)")
+        if im.get('event_move_pct') is not None:
+            print(f"    Event-only move: {im['event_move_pct']:.2f}%"
+                  f"  ({im['event_share'] * 100:.0f}% of variance)")
+        if im.get('warning'):
+            print(f"    [!] {im['warning']}")
+            print(f"        Treat the ratio below as soft.")
         print(f"    Historical avg |move|: {avg_abs_move:.2f}%")
+        if im['ratio'] is None:
+            print(f"    Ratio: not reported \u2014 see warning above")
         if im['ratio'] is not None:
             print(f"    Ratio (IM / Hist): {im['ratio']}  [{im['flag']}]")
             if im['flag'] == 'RICH':

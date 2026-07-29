@@ -1,23 +1,22 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                          DAILY EARNINGS SCREENER                           ║
 ║                    AMC 2026-07-30   ·   BMO 2026-07-31                     ║
-║                       generated 2026-07-29 19:50 ET                        ║
+║                       generated 2026-07-29 19:56 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
   UNIVERSE      160 confirmed reports   (106 AMC · 54 BMO)
-  QUALIFIED       5 BUY   ·   1 SHORT
-  BUY          CNO, ABBV, MSA, CBOE, IMO
+  QUALIFIED       4 BUY   ·   1 SHORT
+  BUY          ABBV, MSA, CBOE, IMO
   SHORT        SAMG
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 5 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 4 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Ticker  Company             Time  EPS  React     Avg  |Avg|      Mom     IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
   ──────  ──────────────────  ────  ───  ─────  ──────  ─────  ───────  ─────  ───  ────  ────  ──────  ────  ──────
-  CNO     CNO Financial Gro…  AMC   6/8    6/8  +2.71%  4.30%   +3.86%    N/A   22   N/A  -         26  thin    thin
   ABBV    AbbVie Inc.         BMO   6/8    7/8  +1.83%  2.52%   +5.38%  3.95%    0  1.57  RICH   1,110  0.75    0.08
-  MSA     MSA Safety Incorp…  AMC   7/8    6/8  +1.60%  1.70%   +0.70%    N/A   22   N/A  -          6  thin    thin
+  MSA     MSA Safety Incorp…  AMC   7/8    6/8  +1.60%  1.70%   +0.70%    N/A   22   N/A  -          1  thin    thin
   CBOE    Cboe Global Marke…  BMO   7/8    6/8  +1.36%  1.58%  +26.84%  4.03%    0  2.55  RICH   1,113  0.51    0.36
-  IMO     Imperial Oil Limi…  BMO   7/8    6/8  +0.56%  1.07%  +14.98%  6.13%   21   N/A  -        144  thin    thin
+  IMO     Imperial Oil Limi…  BMO   7/8    6/8  +0.56%  1.07%  +14.98%  6.13%   21   N/A  -        145  thin    thin
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 1 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -31,9 +30,8 @@
 
 ━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
 
-  CNO     +0.40%, +5.51%, +4.34%, -1.60%, -4.78%, +2.65%, +4.42%, +10.71%
   ABBV    +3.64%, +0.88%, -2.79%, +3.28%, +3.38%, +3.39%, +1.18%, +1.64%
-  MSA     +2.18%, +3.21%, +4.14%, +1.40%, +2.05%, +0.24%, -0.29%, -0.13%
+  MSA     +2.18%, +3.21%, +4.14%, +1.40%, +2.05%, +0.24%, -0.29%, -0.12%
   CBOE    +3.65%, +2.75%, +0.52%, +1.24%, +2.33%, -0.69%, -0.19%, +1.28%
   IMO     +1.55%, +1.55%, +1.87%, +1.24%, -1.56%, +0.24%, +0.07%, -0.46%
   SAMG    -5.28%, -4.95%, -1.39%, -3.00%, -10.27%, -1.26%, -5.85%, -5.68%
@@ -88,10 +86,10 @@
   Of 160 names in the universe:
       146  did not meet the filters
         8  had fewer than 8 reported quarters available
-        0  EPS fetch failed
+        1  EPS fetch failed
         0  price fetch failed
 
-  Data fetch failure rate: 0%  (0 of 160 attempted)
+  Data fetch failure rate: 1%  (1 of 160 attempted)
 
   ENVIRONMENT
     python      3.11.15 on Linux

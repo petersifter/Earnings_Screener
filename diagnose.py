@@ -11,7 +11,8 @@ If both fail, it is the installed yfinance version or the machine's network.
 If the version numbers differ, pin requirements.txt to whichever one works.
 """
 
-from yf_fetch import fetch_eps_history, environment_report, RATE_LIMITED
+from yf_fetch import (fetch_eps_history, environment_report, RATE_LIMITED,
+                      MISSING_DEP)
 
 TEST_TICKERS = ["AAPL", "MSFT", "KO", "JPM", "WMT"]
 
@@ -62,7 +63,18 @@ print("  VERDICT")
 print("=" * 62)
 
 failures = [r for r in results if r is not None]
-if not failures:
+missing = [r for r in failures if r.startswith(MISSING_DEP)]
+
+if missing:
+    print("  A required library is missing. This is NOT a network or rate-limit")
+    print("  problem — the fetch never got as far as parsing a response.")
+    print(f"    {missing[0]}")
+    print()
+    print("  yfinance parses the earnings table with pandas.read_html, which")
+    print("  needs lxml. lxml is not a declared yfinance dependency, so a clean")
+    print("  install omits it. Add this to requirements.txt and re-run:")
+    print("      lxml>=5.0")
+elif not failures:
     print("  yfinance is working here. If the cloud run fails with the same")
     print("  code, the GitHub runner IP is the problem, not your code.")
 elif len(failures) == len(results):

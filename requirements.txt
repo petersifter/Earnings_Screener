@@ -1,13 +1,19 @@
 # Pinned deliberately.
 #
-# These were unpinned, so every cloud run installed whatever was newest that
-# day while the local venv kept an older, working set. yfinance shipped 1.5.2
-# on 2026-07-23; a screener that works locally and returns nothing in the
-# cloud is the classic symptom of exactly that gap.
-#
-# To match a known-good local venv instead, run:  pip show yfinance
-# and change the version below to match.
+# lxml is the important line. yfinance parses the earnings table with
+# pandas.read_html, which needs lxml — but lxml is NOT one of yfinance's
+# declared dependencies. A clean install therefore produces a yfinance that
+# fetches prices fine and raises ImportError on every single EPS lookup. That
+# was the "160 names returned no EPS history" failure: not throttling, not a
+# blocked IP, just a missing parser.
+lxml>=5.0
+
 yfinance==1.5.2
 finance-calendars==0.0.7
-pandas>=2.2,<3.1
+
+# Held below 3.0 to match a working local venv. pandas 3 looks fine with
+# yfinance 1.5.2, but there's no reason to carry the risk. Check yours with
+# `pip show pandas` and match it here.
+pandas>=2.2,<3
+
 curl_cffi>=0.15

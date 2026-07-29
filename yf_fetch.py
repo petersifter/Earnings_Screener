@@ -33,6 +33,7 @@ except Exception:  # older versions
 RATE_LIMITED = "rate limited"
 NO_DATA = "no data returned"
 ERROR = "fetch error"
+MISSING_DEP = "missing dependency"
 
 
 def _sleep_backoff(attempt, base=1.5):
@@ -45,18 +46,25 @@ def _retry(fn, retries=3, base=1.5):
     Call fn(). Returns (result, reason).
     Retries on rate limits and on empty results, since yfinance reports
     throttling as an empty result rather than an exception.
+
+    ImportError is NOT retried. It means a parsing library is missing, which
+    will fail identically every time — retrying 160 tickers three times each
+    just turns a one-line fix into a 20-minute run.
     """
     last = NO_DATA
     for attempt in range(retries):
         try:
             result = fn()
+        except (ImportError, ModuleNotFoundError) as e:
+            return None, f"{MISSING_DEP}: {e}"
         except YFRateLimitError:
             last = RATE_LIMITED
             if attempt < retries - 1:
                 _sleep_backoff(attempt, base * 2)
             continue
         except Exception as e:
-            last = f"{ERROR}: {type(e).__name__}"
+            msg = str(e).strip().replace("\n", " ")[:90]
+            last = f"{ERROR}: {type(e).__name__}" + (f": {msg}" if msg else "")
             if attempt < retries - 1:
                 _sleep_backoff(attempt, base)
             continue
@@ -119,16 +127,28 @@ class CircuitBreaker:
         self.attempted = 0
         self.fetch_failures = 0
         self.rate_limited = 0
+        self.missing_dep = 0
+        self.last_reason = None
 
     def record(self, reason):
         self.attempted += 1
         if reason is not None:
             self.fetch_failures += 1
+            self.last_reason = reason
             if reason == RATE_LIMITED:
                 self.rate_limited += 1
+            elif reason.startswith(MISSING_DEP):
+                self.missing_dep += 1
+
+    @property
+    def tripped_early(self):
+        """A missing library fails deterministically. Stop after 3, not 20."""
+        return self.missing_dep >= 3
 
     @property
     def tripped(self):
+        if self.tripped_early:
+            return True
         if self.attempted < self.check_after:
             return False
         return (self.fetch_failures / self.attempted) >= self.threshold
@@ -140,6 +160,12 @@ class CircuitBreaker:
         return self.fetch_failures / self.attempted
 
     def diagnosis(self):
+        if self.missing_dep:
+            return (f"A required library is missing, not a data problem: "
+                    f"{self.last_reason}. yfinance parses the earnings table "
+                    f"with pandas.read_html, which needs lxml, but lxml is not "
+                    f"one of yfinance's declared dependencies. Add it to "
+                    f"requirements.txt.")
         if self.rate_limited:
             return ("Yahoo is rate limiting this host. On GitHub Actions the "
                     "runner IP is shared and often already throttled.")
@@ -156,7 +182,7 @@ def environment_report():
         f"python      {sys.version.split()[0]} on {platform.system()}",
         f"yfinance    {getattr(yf, '__version__', 'unknown')}",
     ]
-    for mod in ("curl_cffi", "pandas", "requests"):
+    for mod in ("curl_cffi", "pandas", "requests", "lxml", "bs4"):
         try:
             m = __import__(mod)
             lines.append(f"{mod:<11} {getattr(m, '__version__', 'unknown')}")

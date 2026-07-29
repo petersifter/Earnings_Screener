@@ -1,20 +1,38 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                          DAILY EARNINGS SCREENER                           ║
 ║                    AMC 2026-07-30   ·   BMO 2026-07-31                     ║
-║                       generated 2026-07-29 18:02 ET                        ║
+║                       generated 2026-07-29 18:37 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
   UNIVERSE      160 confirmed reports   (106 AMC · 54 BMO)
-  QUALIFIED       0 BUY   ·   0 SHORT
-  RESULT       No stocks qualified for this session.
+  QUALIFIED       5 BUY   ·   1 SHORT
+  BUY          CNO, ABBV, MSA, CBOE, IMO
+  SHORT        SAMG
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 5 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  No stocks qualified.
+  Ticker  Company                   Time  EPS  React  AvgMove   Mom30d     IM  IM/H  Flag   P/C  Vol/OI
+  ──────  ────────────────────────  ────  ───  ─────  ───────  ───────  ─────  ────  ────  ────  ──────
+  CNO     CNO Financial Group, In…  AMC   6/8    6/8   +2.71%   +3.86%    N/A   N/A  -     0.04    0.29
+  ABBV    AbbVie Inc.               BMO   6/8    7/8   +1.83%   +5.38%  5.42%  2.15  RICH  4.62     0.3
+  MSA     MSA Safety Incorporpora…  AMC   7/8    6/8   +1.60%   +0.70%    N/A   N/A  -      1.0     0.5
+  CBOE    Cboe Global Markets, In…  BMO   7/8    6/8   +1.36%  +26.84%  6.64%   4.2  RICH  1.62    0.44
+  IMO     Imperial Oil Limited      BMO   7/8    6/8   +0.56%  +14.98%  7.07%   6.6  RICH  0.17    0.05
 
-━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 1 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  No stocks qualified.
+  Ticker  Company                   Time  EPS  React  AvgMove  Mom30d      IM  IM/H  Flag   P/C  Vol/OI
+  ──────  ────────────────────────  ────  ───  ─────  ───────  ──────  ──────  ────  ────  ────  ──────
+  SAMG    Silvercrest Asset Manag…  BMO   8/8    8/8   -4.71%  -1.29%  26.80%  5.69  RICH  1.83    0.26
+
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
+
+  CNO     +0.40%, +5.51%, +4.34%, -1.60%, -4.78%, +2.65%, +4.42%, +10.71%
+  ABBV    +3.64%, +0.88%, -2.79%, +3.28%, +3.38%, +3.39%, +1.18%, +1.64%
+  MSA     +2.18%, +3.21%, +4.14%, +1.40%, +2.05%, +0.24%, -0.29%, -0.12%
+  CBOE    +3.65%, +2.75%, +0.52%, +1.24%, +2.33%, -0.69%, -0.19%, +1.28%
+  IMO     +1.55%, +1.55%, +1.87%, +1.24%, -1.56%, +0.24%, +0.07%, -0.46%
+  SAMG    -5.28%, -4.95%, -1.39%, -3.00%, -10.27%, -1.26%, -5.85%, -5.68%
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -47,10 +65,18 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   Of 160 names in the universe:
-       0  did not meet the filters
-       0  had fewer than 8 reported quarters available
-     160  returned no EPS history
-       0  returned incomplete price history
+      145  did not meet the filters
+        7  had fewer than 8 reported quarters available
+        2  EPS fetch failed
+        0  price fetch failed
 
-  A high count in the last three lines usually means the data
-  provider was throttling, not that the names were unsuitable.
+  Data fetch failure rate: 1%  (2 of 160 attempted)
+
+  ENVIRONMENT
+    python      3.11.15 on Linux
+    yfinance    1.5.2
+    curl_cffi   0.15.0
+    pandas      2.3.3
+    requests    2.34.2
+    lxml        6.1.1
+    bs4         4.15.0

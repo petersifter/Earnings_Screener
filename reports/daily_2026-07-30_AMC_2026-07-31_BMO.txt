@@ -1,0 +1,103 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                          DAILY EARNINGS SCREENER                           ║
+║                    AMC 2026-07-30   ·   BMO 2026-07-31                     ║
+║                       generated 2026-07-29 19:50 ET                        ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+  UNIVERSE      160 confirmed reports   (106 AMC · 54 BMO)
+  QUALIFIED       5 BUY   ·   1 SHORT
+  BUY          CNO, ABBV, MSA, CBOE, IMO
+  SHORT        SAMG
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 5 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Ticker  Company             Time  EPS  React     Avg  |Avg|      Mom     IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ──────  ─────  ───────  ─────  ───  ────  ────  ──────  ────  ──────
+  CNO     CNO Financial Gro…  AMC   6/8    6/8  +2.71%  4.30%   +3.86%    N/A   22   N/A  -         26  thin    thin
+  ABBV    AbbVie Inc.         BMO   6/8    7/8  +1.83%  2.52%   +5.38%  3.95%    0  1.57  RICH   1,110  0.75    0.08
+  MSA     MSA Safety Incorp…  AMC   7/8    6/8  +1.60%  1.70%   +0.70%    N/A   22   N/A  -          6  thin    thin
+  CBOE    Cboe Global Marke…  BMO   7/8    6/8  +1.36%  1.58%  +26.84%  4.03%    0  2.55  RICH   1,113  0.51    0.36
+  IMO     Imperial Oil Limi…  BMO   7/8    6/8  +0.56%  1.07%  +14.98%  6.13%   21   N/A  -        144  thin    thin
+
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 1 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Ticker  Company             Time  EPS  React     Avg  |Avg|     Mom     IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ──────  ─────  ──────  ─────  ───  ────  ────  ──────  ────  ──────
+  SAMG    Silvercrest Asset…  BMO   8/8    8/8  -4.71%  4.71%  -1.29%  1.55%   21   N/A  -         34  thin    thin
+
+  LOW MOVERS — average absolute move under 1.5%:
+    IMO     1.07%   little room for an earnings move to pay for the risk
+  Informational only. Not filtered out.
+
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
+
+  CNO     +0.40%, +5.51%, +4.34%, -1.60%, -4.78%, +2.65%, +4.42%, +10.71%
+  ABBV    +3.64%, +0.88%, -2.79%, +3.28%, +3.38%, +3.39%, +1.18%, +1.64%
+  MSA     +2.18%, +3.21%, +4.14%, +1.40%, +2.05%, +0.24%, -0.29%, -0.13%
+  CBOE    +3.65%, +2.75%, +0.52%, +1.24%, +2.33%, -0.69%, -0.19%, +1.28%
+  IMO     +1.55%, +1.55%, +1.87%, +1.24%, -1.56%, +0.24%, +0.07%, -0.46%
+  SAMG    -5.28%, -4.95%, -1.39%, -3.00%, -10.27%, -1.26%, -5.85%, -5.68%
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  FILTERS — all three must pass for a name to appear above
+
+    1. EPS        6+/8 beats  (BUY)   ·  6+/8 misses  (SHORT)
+    2. Reaction   6+/8 next-day closes up (BUY) or down (SHORT),
+                  and the average next-day move pointing the same way
+    3. Momentum   30-day pre-earnings price change positive (BUY)
+                  or negative (SHORT)
+
+  INFORMATIONAL — shown for context, does not filter anything
+
+    Avg       average SIGNED next-day move over the last 8 reports
+    |Avg|     average ABSOLUTE next-day move. This is the divisor behind
+              IM/H, so a small |Avg| inflates the ratio. Under ~1.5% there
+              is little move to trade even when the pattern is reliable.
+    Mom       price change over the ~21 trading days into earnings
+    IM        implied move from the ATM straddle, as % of spot, with any
+              intrinsic value removed first
+    DTE       days from the report date to the expiry used
+                0   the expiry settles right after the release, so the
+                    straddle is almost purely the earnings event
+                7+  the straddle also carries a week or more of ordinary
+                    time value that has nothing to do with earnings
+    IM/H      implied move ÷ historical average absolute move
+                RICH   > 1.15   options pricing a bigger move than history
+                FAIR   0.85–1.15
+                CHEAP  < 0.85   options pricing a smaller move than history
+              Blank when the expiry sits too far past the report to tell
+              the event apart from normal drift. A blank is not a neutral
+              reading — it means no reading was possible.
+    OptVol    total contracts traded in the expiry above (calls + puts).
+              This is your liquidity read — a few hundred contracts means
+              you may struggle to get filled at a sane price.
+    P/C       put volume ÷ call volume
+                < 0.70 bullish  ·  0.70–1.00 neutral  ·  > 1.00 bearish
+    Vol/OI    option volume ÷ open interest
+                > 1.00 fresh positioning  ·  < 0.50 quiet
+              Both read 'thin' below 250 contracts, where the ratio would
+              be arithmetic on a handful of trades rather than a signal.
+
+  Expiry selection depends on timing. An AMC report lands after the close,
+  so a same-day expiry settles before it and the next one is used. A BMO
+  report lands before the open, so the same-day expiry captures it.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Of 160 names in the universe:
+      146  did not meet the filters
+        8  had fewer than 8 reported quarters available
+        0  EPS fetch failed
+        0  price fetch failed
+
+  Data fetch failure rate: 0%  (0 of 160 attempted)
+
+  ENVIRONMENT
+    python      3.11.15 on Linux
+    yfinance    1.5.2
+    curl_cffi   0.15.0
+    pandas      2.3.3
+    requests    2.34.2
+    lxml        6.1.1
+    bs4         4.15.0

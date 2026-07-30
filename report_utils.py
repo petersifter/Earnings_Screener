@@ -22,6 +22,17 @@ the report file.
 import os
 import sys
 
+# Windows uses UTF-8 for a console but falls back to the locale codepage
+# (cp1252) the moment stdout is a pipe or a file. The box-drawing characters
+# in this report do not exist in cp1252, so piping the screener on Windows
+# raised UnicodeEncodeError *after* the report file had been written --
+# a crash with the deliverable already safely on disk.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 WIDTH = 78
 
 # Console progress ----------------------------------------------------------
@@ -157,8 +168,17 @@ class Report:
         return path
 
     def echo(self):
-        """Print the report to console too, for interactive local runs."""
-        print("\n".join(self.lines))
+        """
+        Print the report to console too, for interactive local runs.
+        Never let a console encoding problem fail a run whose report file is
+        already written -- degrade the characters instead.
+        """
+        text = "\n".join(self.lines)
+        try:
+            print(text)
+        except UnicodeEncodeError:
+            enc = getattr(sys.stdout, "encoding", None) or "ascii"
+            print(text.encode(enc, errors="replace").decode(enc, errors="replace"))
 
 
 # Legend -------------------------------------------------------------------

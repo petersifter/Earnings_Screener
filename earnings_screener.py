@@ -53,15 +53,19 @@ print(f"AMC: {amc_str} | BMO: {bmo_str}\n")
 # -------------------------------------------
 print("Fetching earnings calendar...")
 
+calendar_errors = []
+
 try:
     earnings_amc = fc.get_earnings_by_date(amc_day)
 except Exception as e:
+    calendar_errors.append(f"AMC {amc_str}: {type(e).__name__}: {e}")
     print(f"  AMC calendar fetch failed: {e}")
     earnings_amc = []
 
 try:
     earnings_bmo = fc.get_earnings_by_date(bmo_day)
 except Exception as e:
+    calendar_errors.append(f"BMO {bmo_str}: {type(e).__name__}: {e}")
     print(f"  BMO calendar fetch failed: {e}")
     earnings_bmo = []
 
@@ -84,6 +88,16 @@ skipped = {"failed filters": 0, "under 8 quarters": 0,
            "eps fetch failed": 0, "price fetch failed": 0}
 breaker = CircuitBreaker(check_after=20)
 aborted = False
+abort_reason = None
+
+# An empty universe after a failed calendar call is a broken run, not a quiet
+# day. Without this the report reads "No stocks qualified" either way -- the
+# same silent-failure trap that hid the missing lxml for three months.
+if calendar_errors:
+    aborted = True
+    abort_reason = ("The earnings calendar failed: " + "; ".join(calendar_errors)
+                    + ". The universe is incomplete, so the lists below mean "
+                      "nothing.")
 
 # -------------------------------------------
 # Step 2: Analyze
@@ -113,7 +127,10 @@ for count, ticker in enumerate(tickers, start=1):
         skipped["eps fetch failed"] += 1
         continue
 
-    reported = ed[ed["Reported EPS"].notna()].copy()
+    # Sort explicitly. yfinance returns newest-first today, but nothing
+    # documents that, and a silent flip would screen the OLDEST 8 quarters
+    # while still looking completely normal.
+    reported = ed[ed["Reported EPS"].notna()].sort_index(ascending=False).copy()
     if len(reported) < 8:
         skipped["under 8 quarters"] += 1
         continue
@@ -221,6 +238,11 @@ for count, ticker in enumerate(tickers, start=1):
 
 progress_done("Screening complete.")
 
+# Catches the case the early-abort threshold misses: a universe smaller than
+# check_after where every fetch still failed.
+if not aborted and breaker.total_failure:
+    aborted = True
+
 buy_list.sort(key=lambda x: x["_sort"], reverse=True)
 short_list.sort(key=lambda x: x["_sort"])
 
@@ -256,9 +278,13 @@ report.blank()
 if aborted:
     report.add("  " + "!" * 74)
     report.add("  !!  DATA FAILURE \u2014 THIS IS NOT A SCREENING RESULT")
-    report.add(f"  !!  Aborted after {breaker.attempted} tickers, all returning no data.")
-    report.add("  !!  The lists below are empty because the data source failed,")
-    report.add("  !!  not because nothing qualified. See SCREENING NOTES.")
+    if abort_reason:
+        for chunk in [abort_reason[i:i + 68] for i in range(0, len(abort_reason), 68)]:
+            report.add(f"  !!  {chunk}")
+    else:
+        report.add(f"  !!  Aborted after {breaker.attempted} tickers, all returning no data.")
+        report.add("  !!  The lists below are empty because the data source failed,")
+        report.add("  !!  not because nothing qualified. See SCREENING NOTES.")
     report.add("  " + "!" * 74)
     report.blank()
 report.add(f"  UNIVERSE     {len(tickers):>4} confirmed reports   ({n_amc} AMC \u00b7 {n_bmo} BMO)")
@@ -310,7 +336,7 @@ if breaker.attempted:
 if aborted:
     report.blank()
     report.add("  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***")
-    report.add(f"  {breaker.diagnosis()}")
+    report.add(f"  {abort_reason or breaker.diagnosis()}")
 elif breaker.failure_rate > 0.25:
     report.blank()
     report.add("  Fetch failures above 25% mean this list is incomplete.")
@@ -325,7 +351,9 @@ for line in environment_report():
 # Write + export
 # -------------------------------------------
 if aborted:
-    headline = (f"DATA FAILURE \u2014 aborted after {breaker.attempted} tickers, "
+    headline = ("DATA FAILURE \u2014 calendar unavailable. Not a screening result."
+                if abort_reason else
+                f"DATA FAILURE \u2014 aborted after {breaker.attempted} tickers, "
                 f"no usable EPS data. Not a screening result.")
 else:
     headline = f"{len(tickers)} scanned \u00b7 {len(buy_list)} BUY \u00b7 {len(short_list)} SHORT"

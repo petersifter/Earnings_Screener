@@ -162,6 +162,16 @@ class CircuitBreaker:
         return (self.fetch_failures / self.attempted) >= self.threshold
 
     @property
+    def total_failure(self):
+        """
+        Every single attempt failed. Regardless of how few were attempted,
+        that is a broken data source, not a screening result. The check_after
+        threshold exists to abort a long run early; this catches the small
+        universe that never reaches it.
+        """
+        return self.attempted > 0 and self.fetch_failures == self.attempted
+
+    @property
     def failure_rate(self):
         if not self.attempted:
             return 0.0

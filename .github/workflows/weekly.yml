@@ -22,6 +22,9 @@ jobs:
       # KEY=value lines. No shell date arithmetic, so a run crossing midnight
       # UTC can no longer misname the attachment. Exits 1 if the data source
       # failed, rather than emitting an empty list that reads like a result.
+      - name: Self-test
+        run: python selftest.py
+
       - name: Run screener
         env:
           SCREENER_SPACING: '0.5'

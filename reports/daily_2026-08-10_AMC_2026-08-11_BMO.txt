@@ -1,0 +1,90 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                          DAILY EARNINGS SCREENER                           ║
+║                    AMC 2026-08-10   ·   BMO 2026-08-11                     ║
+║                       generated 2026-08-07 19:23 ET                        ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
+  !!  The earnings calendar failed: AMC 2026-08-10: ConnectionError: simul
+  !!  ated NASDAQ outage; BMO 2026-08-11: ConnectionError: simulated NASDA
+  !!  Q outage. The universe is incomplete, so the lists below mean nothin
+  !!  g.
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  UNIVERSE        0 confirmed reports   (0 AMC · 0 BMO)
+  QUALIFIED       0 BUY   ·   0 SHORT
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  No stocks qualified.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  No stocks qualified.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  FILTERS — all three must pass for a name to appear above
+
+    1. EPS        6+/8 beats  (BUY)   ·  6+/8 misses  (SHORT)
+    2. Reaction   6+/8 next-day closes up (BUY) or down (SHORT),
+                  and the average next-day move pointing the same way
+    3. Momentum   30-day pre-earnings price change positive (BUY)
+                  or negative (SHORT)
+
+  INFORMATIONAL — shown for context, does not filter anything
+
+    Avg       average SIGNED next-day move over the last 8 reports
+    |Avg|     average ABSOLUTE next-day move. This is the divisor behind
+              IM/H, so a small |Avg| inflates the ratio. Under ~1.5% there
+              is little move to trade even when the pattern is reliable.
+    Mom       price change over the ~21 trading days into earnings
+    IM        implied move from the ATM straddle, as % of spot, with any
+              intrinsic value removed first
+    DTE       days from the report date to the expiry used
+                0   the expiry settles right after the release, so the
+                    straddle is almost purely the earnings event
+                7+  the straddle also carries a week or more of ordinary
+                    time value that has nothing to do with earnings
+    IM/H      implied move ÷ historical average absolute move
+                RICH   > 1.15   options pricing a bigger move than history
+                FAIR   0.85–1.15
+                CHEAP  < 0.85   options pricing a smaller move than history
+              Blank when the expiry sits too far past the report to tell
+              the event apart from normal drift. A blank is not a neutral
+              reading — it means no reading was possible.
+    OptVol    total contracts traded in the expiry above (calls + puts).
+              This is your liquidity read — a few hundred contracts means
+              you may struggle to get filled at a sane price.
+    P/C       put volume ÷ call volume
+                < 0.70 bullish  ·  0.70–1.00 neutral  ·  > 1.00 bearish
+    Vol/OI    option volume ÷ open interest
+                > 1.00 fresh positioning  ·  < 0.50 quiet
+              Both read 'thin' below 250 contracts, where the ratio would
+              be arithmetic on a handful of trades rather than a signal.
+
+  Expiry selection depends on timing. An AMC report lands after the close,
+  so a same-day expiry settles before it and the next one is used. A BMO
+  report lands before the open, so the same-day expiry captures it.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Of 0 names in the universe:
+        0  did not meet the filters
+        0  had fewer than 8 reported quarters available
+        0  EPS fetch failed
+        0  price fetch failed
+
+
+  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
+  The earnings calendar failed: AMC 2026-08-10: ConnectionError: simulated NASDAQ outage; BMO 2026-08-11: ConnectionError: simulated NASDAQ outage. The universe is incomplete, so the lists below mean nothing.
+
+  ENVIRONMENT
+    python      3.11.15 on Linux
+    yfinance    stub
+    curl_cffi   0.16.0
+    pandas      2.3.3
+    requests    2.34.2
+    lxml        6.1.1
+    bs4         4.15.0

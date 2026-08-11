@@ -1,32 +1,32 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
-║                          WEEKLY EARNINGS SCREENER                          ║
-║                     week of 2026-08-17  →  2026-08-21                      ║
+║                          DAILY EARNINGS SCREENER                           ║
+║                    AMC 2026-08-12   ·   BMO 2026-08-13                     ║
 ║                       generated 2026-08-11 19:33 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
-  !!  Calendar failed for 2026-08-17: ConnectionError; 2026-08-18: Connect
-  !!  ionError; 2026-08-19: ConnectionError; 2026-08-20: ConnectionError; 
-  !!  2026-08-21: ConnectionError. The week is incompletely covered.
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  UNIVERSE      171 confirmed reports   (90 AMC · 81 BMO)
+  QUALIFIED       2 BUY   ·   1 SHORT
+  BUY          TPR, MLCO
+  SHORT        KURA
 
-  UNIVERSE        0 unique names across the week
-                 Monday 2026-08-17         0
-                 Tuesday 2026-08-18        0
-                 Wednesday 2026-08-19      0
-                 Thursday 2026-08-20       0
-                 Friday 2026-08-21         0
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 2 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  QUALIFIED       0 BUY   ·   0 SHORT
+  Ticker  Company             Time  EPS  React     Avg  |Avg|      Mom     IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ──────  ─────  ───────  ─────  ───  ────  ────  ──────  ────  ──────
+  TPR     Tapestry, Inc.      BMO   8/8    6/8  +2.43%  3.16%  +18.60%  8.63%    1  2.73  RICH   2,037  0.96    0.66
+  MLCO    Melco Resorts & E…  BMO   8/8    6/8  +0.79%  2.28%   +6.94%  3.15%    8   N/A  -        222  thin    thin
 
-━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 1 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  No stocks qualified.
+  Ticker  Company             Time  EPS  React     Avg  |Avg|      Mom      IM  DTE   IM/H  Flag  OptVol   P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ──────  ─────  ───────  ──────  ───  ─────  ────  ──────  ────  ──────
+  KURA    Kura Oncology, In…  AMC   6/8    6/8  -0.61%  1.98%  -11.65%  50.65%    9  24.98  RICH     927  0.95    0.24
 
-━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
 
-  No stocks qualified.
+  TPR     +2.27%, +6.22%, +4.93%, +5.28%, +0.61%, -2.21%, +3.06%, -0.74%
+  MLCO    -5.37%, +2.60%, +4.24%, +1.85%, +2.39%, +0.45%, -0.58%, +0.76%
+  KURA    +5.29%, -0.20%, -7.05%, -0.31%, -1.54%, -0.51%, -0.78%, +0.19%
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -75,22 +75,17 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Of 0 names in the universe:
-        0  did not meet the filters
-        0  had fewer than 8 reported quarters available
-        0  EPS fetch failed
+  Of 171 names in the universe:
+      116  did not meet the filters
+       49  had fewer than 8 reported quarters available
+        3  EPS fetch failed
         0  price fetch failed
 
-
-  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
-  Calendar failed for 2026-08-17: ConnectionError; 2026-08-18: ConnectionError; 2026-08-19: ConnectionError; 2026-08-20: ConnectionError; 2026-08-21: ConnectionError. The week is incompletely covered.
-
-  Weekly runs include names whose reporting time is still TBD;
-  the daily screener only takes confirmed AMC and BMO.
+  Data fetch failure rate: 2%  (3 of 171 attempted)
 
   ENVIRONMENT
     python      3.11.15 on Linux
-    yfinance    stub
+    yfinance    1.5.2
     curl_cffi   0.16.0
     pandas      2.3.3
     requests    2.34.2

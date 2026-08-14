@@ -1,32 +1,52 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                          WEEKLY EARNINGS SCREENER                          ║
 ║                     week of 2026-08-17  →  2026-08-21                      ║
-║                       generated 2026-08-13 19:35 ET                        ║
+║                       generated 2026-08-14 19:11 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
-  !!  Calendar failed for 2026-08-17: ConnectionError; 2026-08-18: Connect
-  !!  ionError; 2026-08-19: ConnectionError; 2026-08-20: ConnectionError; 
-  !!  2026-08-21: ConnectionError. The week is incompletely covered.
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  UNIVERSE      244 unique names across the week
+                 Monday 2026-08-17        45
+                 Tuesday 2026-08-18       84
+                 Wednesday 2026-08-19     41
+                 Thursday 2026-08-20      52
+                 Friday 2026-08-21        22
 
-  UNIVERSE        0 unique names across the week
-                 Monday 2026-08-17         0
-                 Tuesday 2026-08-18        0
-                 Wednesday 2026-08-19      0
-                 Thursday 2026-08-20       0
-                 Friday 2026-08-21         0
+  QUALIFIED       6 BUY   ·   4 SHORT
+  BUY          FLXS, MRCY, JBSS, PRQR, ROST, DE
+  SHORT        UPXI, FLUX, JFIN, GPUS
 
-  QUALIFIED       0 BUY   ·   0 SHORT
+━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 6 names, strongest first  ━━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━━
+  #  Ticker  Company             Date        Time  EPS  React      Avg   |Avg|      Mom      IM  DTE  IM/H  Flag   OptVol   P/C  Vol/OI
+  ─  ──────  ──────────────────  ──────────  ────  ───  ─────  ───────  ──────  ───────  ──────  ───  ────  ─────  ──────  ────  ──────
+  1  FLXS    Flexsteel Industr…  2026-08-17  AMC   8/8    6/8  +10.82%  13.57%   +3.02%     N/A    -   N/A  -         N/A   N/A     N/A
+  2  MRCY    Mercury Systems I…  2026-08-18  AMC   7/8    6/8   +9.15%  15.95%  +10.77%  14.92%    3  0.68  CHEAP   3,146  8.01     0.4
+  3  JBSS    John B. Sanfilipp…  2026-08-19  AMC   7/8    6/8   +4.57%   6.98%   +2.47%   6.17%    2  0.64  CHEAP      54  thin    thin
+  4  PRQR    ProQR Therapeutic…  2026-08-20  TBD   7/8    7/8   +3.21%   4.70%  +12.94%   7.81%    1  1.66  RICH        7  thin    thin
+  5  ROST    Ross Stores, Inc.   2026-08-20  AMC   7/8    7/8   +2.72%   5.18%   +8.66%   7.05%    1  1.36  RICH      989  2.23    0.16
+  6  DE      Deere & Company     2026-08-20  BMO   7/8    6/8   +1.23%   1.62%   +4.18%   5.25%    1  3.24  RICH    1,603  1.78    0.23
 
-  No stocks qualified.
+━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 4 names, strongest first  ━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━
+  #  Ticker  Company             Date        Time  EPS  React     Avg   |Avg|      Mom     IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
+  ─  ──────  ──────────────────  ──────────  ────  ───  ─────  ──────  ──────  ───────  ─────  ───  ────  ────  ──────  ────  ──────
+  1  UPXI    Upexi, Inc.         2026-08-18  TBD   7/8    6/8  -6.94%   9.68%   -7.14%    N/A    3   N/A  -         95  thin    thin
+  2  FLUX    Flux Power Holdin…  2026-08-20  AMC   6/8    6/8  -5.82%  15.82%  -17.02%    N/A    1   N/A  -          5  thin    thin
+  3  JFIN    Jiayin Group Inc.   2026-08-19  TBD   7/8    6/8  -3.82%   4.17%   -8.43%  7.89%    2   N/A  -          4  thin    thin
+  4  GPUS    Hyperscale Data, …  2026-08-21  TBD   6/8    6/8  -3.02%  10.29%  -22.00%    N/A    -   N/A  -        N/A   N/A     N/A
 
-  No stocks qualified.
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
+
+  FLXS    +8.19%, +3.62%, -8.75%, +13.35%, +12.24%, +30.81%, +29.34%, -2.26%
+  MRCY    +10.49%, -22.32%, +3.28%, +26.95%, -4.88%, +18.51%, +23.49%, +17.65%
+  JBSS    +6.73%, +7.07%, +15.26%, +6.85%, +9.68%, -5.35%, -4.32%, +0.62%
+  PRQR    +3.78%, +6.25%, +5.81%, +0.45%, +5.85%, +3.87%, -5.95%, +5.60%
+  ROST    +8.11%, +8.03%, +8.41%, +1.12%, -9.85%, +1.96%, +2.19%, +1.76%
+  DE      -0.41%, +0.07%, -1.14%, +2.08%, +2.94%, +3.00%, +2.08%, +1.25%
+  UPXI    -16.31%, -4.73%, -5.40%, +5.13%, -29.71%, +5.81%, -7.19%, -3.13%
+  FLUX    -20.77%, -18.25%, -16.36%, -4.06%, +20.00%, +20.00%, -1.78%, -25.33%
+  JFIN    -1.75%, -0.36%, -5.26%, -8.65%, +1.11%, -15.22%, +0.30%, -0.69%
+  GPUS    -13.41%, -7.14%, +0.00%, -6.45%, +29.09%, -13.79%, -4.76%, -7.69%
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -75,22 +95,20 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Of 0 names in the universe:
-        0  did not meet the filters
-        0  had fewer than 8 reported quarters available
-        0  EPS fetch failed
+  Of 244 names in the universe:
+      144  did not meet the filters
+       56  had fewer than 8 reported quarters available
+       34  EPS fetch failed
         0  price fetch failed
 
-
-  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
-  Calendar failed for 2026-08-17: ConnectionError; 2026-08-18: ConnectionError; 2026-08-19: ConnectionError; 2026-08-20: ConnectionError; 2026-08-21: ConnectionError. The week is incompletely covered.
+  Data fetch failure rate: 14%  (34 of 244 attempted)
 
   Weekly runs include names whose reporting time is still TBD;
   the daily screener only takes confirmed AMC and BMO.
 
   ENVIRONMENT
     python      3.11.15 on Linux
-    yfinance    stub
+    yfinance    1.5.2
     curl_cffi   0.16.0
     pandas      2.3.3
     requests    2.34.2

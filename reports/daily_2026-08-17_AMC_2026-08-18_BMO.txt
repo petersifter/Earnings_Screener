@@ -1,27 +1,26 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                          DAILY EARNINGS SCREENER                           ║
 ║                    AMC 2026-08-17   ·   BMO 2026-08-18                     ║
-║                       generated 2026-08-14 19:11 ET                        ║
+║                       generated 2026-08-16 10:17 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
-  !!  The earnings calendar failed: AMC 2026-08-17: ConnectionError: simul
-  !!  ated NASDAQ outage; BMO 2026-08-18: ConnectionError: simulated NASDA
-  !!  Q outage. The universe is incomplete, so the lists below mean nothin
-  !!  g.
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  UNIVERSE       22 confirmed reports   (7 AMC · 15 BMO)
+  QUALIFIED       1 BUY   ·   0 SHORT
+  BUY          FLXS
 
-  UNIVERSE        0 confirmed reports   (0 AMC · 0 BMO)
-  QUALIFIED       0 BUY   ·   0 SHORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 1 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  No stocks qualified.
+  Ticker  Company             Time  EPS  React      Avg   |Avg|     Mom   IM  DTE  IM/H  Flag  OptVol  P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ───────  ──────  ──────  ───  ───  ────  ────  ──────  ───  ──────
+  FLXS    Flexsteel Industr…  AMC   8/8    6/8  +10.82%  13.57%  +1.11%  N/A    -   N/A  -        N/A  N/A     N/A
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   No stocks qualified.
+
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
+
+  FLXS    +8.19%, +3.62%, -8.75%, +13.35%, +12.24%, +30.81%, +29.34%, -2.26%
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -70,19 +69,17 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Of 0 names in the universe:
-        0  did not meet the filters
-        0  had fewer than 8 reported quarters available
+  Of 22 names in the universe:
+       15  did not meet the filters
+        6  had fewer than 8 reported quarters available
         0  EPS fetch failed
         0  price fetch failed
 
-
-  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
-  The earnings calendar failed: AMC 2026-08-17: ConnectionError: simulated NASDAQ outage; BMO 2026-08-18: ConnectionError: simulated NASDAQ outage. The universe is incomplete, so the lists below mean nothing.
+  Data fetch failure rate: 0%  (0 of 22 attempted)
 
   ENVIRONMENT
     python      3.11.15 on Linux
-    yfinance    stub
+    yfinance    1.5.2
     curl_cffi   0.16.0
     pandas      2.3.3
     requests    2.34.2

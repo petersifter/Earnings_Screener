@@ -1,32 +1,52 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                          WEEKLY EARNINGS SCREENER                          ║
 ║                     week of 2026-08-24  →  2026-08-28                      ║
-║                       generated 2026-08-20 19:20 ET                        ║
+║                       generated 2026-08-21 19:13 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
-  !!  Calendar failed for 2026-08-24: ConnectionError; 2026-08-25: Connect
-  !!  ionError; 2026-08-26: ConnectionError; 2026-08-27: ConnectionError; 
-  !!  2026-08-28: ConnectionError. The week is incompletely covered.
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  UNIVERSE      182 unique names across the week
+                 Monday 2026-08-24        20
+                 Tuesday 2026-08-25       47
+                 Wednesday 2026-08-26     49
+                 Thursday 2026-08-27      60
+                 Friday 2026-08-28         6
 
-  UNIVERSE        0 unique names across the week
-                 Monday 2026-08-24         0
-                 Tuesday 2026-08-25        0
-                 Wednesday 2026-08-26      0
-                 Thursday 2026-08-27       0
-                 Friday 2026-08-28         0
+  QUALIFIED       9 BUY   ·   0 SHORT
+  BUY          WOOF, URBN, PAHC, SLQT, HEI, OOMA, NSSC, BZ, BBY
 
-  QUALIFIED       0 BUY   ·   0 SHORT
+━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 9 names, strongest first  ━━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━━
-
-  No stocks qualified.
+  #  Ticker  Company             Date        Time  EPS  React      Avg   |Avg|      Mom      IM  DTE  IM/H  Flag   OptVol   P/C  Vol/OI
+  ─  ──────  ──────────────────  ──────────  ────  ───  ─────  ───────  ──────  ───────  ──────  ───  ────  ─────  ──────  ────  ──────
+  1  WOOF    Petco Health and …  2026-08-27  TBD   6/8    6/8  +14.45%  21.80%   +8.81%  13.73%   22   N/A  -         290  0.35    0.04
+  2  URBN    Urban Outfitters,…  2026-08-26  AMC   7/8    6/8   +6.33%  11.38%   +6.10%   8.84%    2  0.61  CHEAP     904  8.32    0.07
+  3  PAHC    Phibro Animal Hea…  2026-08-26  AMC   8/8    7/8   +6.17%  12.72%   +6.71%  21.56%   23  1.41  RICH      116  thin    thin
+  4  SLQT    SelectQuote, Inc.   2026-08-25  BMO   6/8    6/8   +5.17%   8.33%  +28.39%     N/A   24   N/A  -         123  thin    thin
+  5  HEI     Heico Corporation   2026-08-25  AMC   8/8    6/8   +3.77%   8.24%   +1.55%   7.73%   24   N/A  -          56  thin    thin
+  6  OOMA    Ooma, Inc.          2026-08-26  AMC   8/8    6/8   +3.45%   9.59%   +9.99%  13.26%   23   N/A  -         106  thin    thin
+  7  NSSC    NAPCO Security Te…  2026-08-24  BMO   6/8    6/8   +3.15%   4.14%   +6.58%   7.98%   25   N/A  -         182  thin    thin
+  8  BZ      KANZHUN LIMITED     2026-08-25  BMO   7/8    6/8   +2.65%   3.66%   +3.44%   5.64%   24   N/A  -         178  thin    thin
+  9  BBY     Best Buy Co., Inc.  2026-08-27  BMO   7/8    6/8   +1.22%   1.32%   +0.54%   8.08%    1  6.12  RICH    1,117  0.53    0.31
 
 ━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━
 
   No stocks qualified.
+
+  LOW MOVERS — average absolute move under 1.5%:
+    BBY     1.32%   little room for an earnings move to pay for the risk
+  Informational only. Not filtered out.
+
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
+
+  WOOF    -6.07%, +34.58%, +14.48%, +23.53%, -23.34%, +31.56%, +7.96%, +32.90%
+  URBN    +2.92%, +5.04%, +13.54%, -10.65%, +22.84%, +8.18%, +18.31%, -9.57%
+  PAHC    -26.22%, +21.95%, +4.59%, +19.44%, +14.75%, +9.88%, +1.78%, +3.17%
+  SLQT    -3.23%, +6.80%, +2.98%, +3.86%, +2.13%, +30.82%, +7.39%, -9.41%
+  HEI     +11.53%, -9.21%, +5.81%, +8.78%, +7.42%, +13.88%, -8.68%, +0.61%
+  OOMA    -9.55%, +11.62%, -15.02%, +8.01%, +0.97%, +2.25%, +4.36%, +24.94%
+  NSSC    +5.58%, +6.63%, +1.45%, +11.18%, +0.28%, -1.89%, +4.06%, -2.07%
+  BZ      -1.92%, -2.12%, +1.01%, +6.61%, +0.93%, +2.19%, +2.00%, +12.51%
+  BBY     +4.29%, +2.18%, +1.66%, +1.35%, -0.06%, +0.44%, -0.35%, +0.22%
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -75,23 +95,21 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Of 0 names in the universe:
-        0  did not meet the filters
-        0  had fewer than 8 reported quarters available
-        0  EPS fetch failed
-        0  price fetch failed
+  Of 182 names in the universe:
+      111  did not meet the filters
+       41  had fewer than 8 reported quarters available
+       20  EPS fetch failed
+        1  price fetch failed
 
-
-  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
-  Calendar failed for 2026-08-24: ConnectionError; 2026-08-25: ConnectionError; 2026-08-26: ConnectionError; 2026-08-27: ConnectionError; 2026-08-28: ConnectionError. The week is incompletely covered.
+  Data fetch failure rate: 11%  (20 of 182 attempted)
 
   Weekly runs include names whose reporting time is still TBD;
   the daily screener only takes confirmed AMC and BMO.
 
   ENVIRONMENT
     python      3.11.16 on Linux
-    yfinance    stub
-    curl_cffi   0.16.0
+    yfinance    1.5.2
+    curl_cffi   0.16.1
     pandas      2.3.3
     requests    2.34.2
     lxml        6.1.2

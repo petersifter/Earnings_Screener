@@ -1,27 +1,28 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                          DAILY EARNINGS SCREENER                           ║
 ║                    AMC 2026-08-24   ·   BMO 2026-08-25                     ║
-║                       generated 2026-08-21 19:12 ET                        ║
+║                       generated 2026-08-23 10:17 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
-  !!  The earnings calendar failed: AMC 2026-08-24: ConnectionError: simul
-  !!  ated NASDAQ outage; BMO 2026-08-25: ConnectionError: simulated NASDA
-  !!  Q outage. The universe is incomplete, so the lists below mean nothin
-  !!  g.
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  UNIVERSE       16 confirmed reports   (3 AMC · 13 BMO)
+  QUALIFIED       2 BUY   ·   0 SHORT
+  BUY          SLQT, BZ
 
-  UNIVERSE        0 confirmed reports   (0 AMC · 0 BMO)
-  QUALIFIED       0 BUY   ·   0 SHORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 2 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  No stocks qualified.
+  Ticker  Company            Time  EPS  React     Avg  |Avg|      Mom     IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
+  ──────  ─────────────────  ────  ───  ─────  ──────  ─────  ───────  ─────  ───  ────  ────  ──────  ────  ──────
+  SLQT    SelectQuote, Inc.  BMO   6/8    6/8  +5.17%  8.33%  +28.37%    N/A   24   N/A  -        123  thin    thin
+  BZ      KANZHUN LIMITED    BMO   7/8    6/8  +2.65%  3.66%   +3.44%  5.64%   24   N/A  -        178  thin    thin
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   No stocks qualified.
+
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
+
+  SLQT    -3.23%, +6.80%, +2.98%, +3.86%, +2.13%, +30.82%, +7.39%, -9.41%
+  BZ      -1.92%, -2.12%, +1.01%, +6.61%, +0.93%, +2.19%, +2.00%, +12.51%
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -70,19 +71,17 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Of 0 names in the universe:
-        0  did not meet the filters
-        0  had fewer than 8 reported quarters available
+  Of 16 names in the universe:
+        9  did not meet the filters
+        5  had fewer than 8 reported quarters available
         0  EPS fetch failed
         0  price fetch failed
 
-
-  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
-  The earnings calendar failed: AMC 2026-08-24: ConnectionError: simulated NASDAQ outage; BMO 2026-08-25: ConnectionError: simulated NASDAQ outage. The universe is incomplete, so the lists below mean nothing.
+  Data fetch failure rate: 0%  (0 of 16 attempted)
 
   ENVIRONMENT
     python      3.11.16 on Linux
-    yfinance    stub
+    yfinance    1.5.2
     curl_cffi   0.16.1
     pandas      2.3.3
     requests    2.34.2

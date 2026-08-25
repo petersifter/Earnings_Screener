@@ -1,32 +1,34 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
-║                          WEEKLY EARNINGS SCREENER                          ║
-║                     week of 2026-08-03  →  2026-08-07                      ║
-║                       generated 2026-08-02 10:58 ET                        ║
+║                          DAILY EARNINGS SCREENER                           ║
+║                    AMC 2026-08-13   ·   BMO 2026-08-14                     ║
+║                       generated 2026-08-12 19:35 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
-  !!  Calendar failed for 2026-08-03: ConnectionError; 2026-08-04: Connect
-  !!  ionError; 2026-08-05: ConnectionError; 2026-08-06: ConnectionError; 
-  !!  2026-08-07: ConnectionError. The week is incompletely covered.
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  UNIVERSE      114 confirmed reports   (90 AMC · 24 BMO)
+  QUALIFIED       0 BUY   ·   5 SHORT
+  SHORT        CWD, CBUS, AMPG, HGBL, EDBL
 
-  UNIVERSE        0 unique names across the week
-                 Monday 2026-08-03         0
-                 Tuesday 2026-08-04        0
-                 Wednesday 2026-08-05      0
-                 Thursday 2026-08-06       0
-                 Friday 2026-08-07         0
-
-  QUALIFIED       0 BUY   ·   0 SHORT
-
-━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   No stocks qualified.
 
-━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 5 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  No stocks qualified.
+  Ticker  Company             Time  EPS  React     Avg  |Avg|      Mom      IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ──────  ─────  ───────  ──────  ───  ────  ────  ──────  ────  ──────
+  CWD     CaliberCos Inc.     AMC   7/8    7/8  -6.37%  7.06%  -11.58%     N/A    -   N/A  -        N/A   N/A     N/A
+  CBUS    Cibus, Inc.         AMC   7/8    7/8  -4.93%  9.90%  -20.92%  10.05%    8   N/A  -          6  thin    thin
+  AMPG    Amplitech Group, …  AMC   6/8    6/8  -4.66%  9.60%   -3.03%  14.20%    1  1.48  RICH   1,144  0.93    0.53
+  HGBL    Heritage Global I…  AMC   6/8    6/8  -3.30%  7.16%  -14.40%     N/A    -   N/A  -        N/A   N/A     N/A
+  EDBL    Edible Garden AG …  BMO   6/8    7/8  -2.20%  4.46%  -49.71%     N/A    -   N/A  -        N/A   N/A     N/A
+
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
+
+  CWD     -15.52%, -28.40%, -0.26%, -2.53%, -0.83%, +2.75%, -0.37%, -5.78%
+  CBUS    -7.09%, -24.73%, -2.40%, -4.08%, -8.72%, -6.39%, +19.89%, -5.90%
+  AMPG    +15.73%, -32.08%, -3.18%, -12.68%, +4.04%, -4.52%, -2.11%, -2.48%
+  HGBL    -3.01%, -4.88%, -9.09%, -3.85%, +2.50%, +12.92%, -4.12%, -16.88%
+  EDBL    -7.63%, -5.48%, -0.51%, +9.05%, -0.65%, -0.77%, -3.85%, -7.74%
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -75,22 +77,17 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Of 0 names in the universe:
-        0  did not meet the filters
-        0  had fewer than 8 reported quarters available
-        0  EPS fetch failed
-        0  price fetch failed
+  Of 114 names in the universe:
+       74  did not meet the filters
+       29  had fewer than 8 reported quarters available
+        5  EPS fetch failed
+        1  price fetch failed
 
-
-  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
-  Calendar failed for 2026-08-03: ConnectionError; 2026-08-04: ConnectionError; 2026-08-05: ConnectionError; 2026-08-06: ConnectionError; 2026-08-07: ConnectionError. The week is incompletely covered.
-
-  Weekly runs include names whose reporting time is still TBD;
-  the daily screener only takes confirmed AMC and BMO.
+  Data fetch failure rate: 4%  (5 of 114 attempted)
 
   ENVIRONMENT
     python      3.11.15 on Linux
-    yfinance    stub
+    yfinance    1.5.2
     curl_cffi   0.16.0
     pandas      2.3.3
     requests    2.34.2

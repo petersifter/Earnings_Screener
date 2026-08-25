@@ -1,0 +1,107 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                          DAILY EARNINGS SCREENER                           ║
+║                    AMC 2026-08-04   ·   BMO 2026-08-05                     ║
+║                       generated 2026-08-03 20:03 ET                        ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+  UNIVERSE      296 confirmed reports   (170 AMC · 126 BMO)
+  QUALIFIED       9 BUY   ·   1 SHORT
+  BUY          FTK, LAW, CRCT, EMR, EVTC, DK, RPC, TALO, NICE
+  SHORT        AGNT
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 9 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Ticker  Company             Time  EPS  React     Avg   |Avg|      Mom      IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ──────  ──────  ───────  ──────  ───  ────  ────  ──────  ────  ──────
+  FTK     Flotek Industries…  AMC   6/8    6/8  +8.02%  10.88%  +15.20%  16.50%   17   N/A  -        325  0.16    1.03
+  LAW     CS Disco, Inc.      BMO   8/8    6/8  +4.86%   6.80%   +5.17%   9.83%   16   N/A  -         27  thin    thin
+  CRCT    Cricut, Inc.        AMC   7/8    6/8  +4.84%   9.94%  +10.88%   4.91%   17   N/A  -         17  thin    thin
+  EMR     Emerson Electric …  AMC   7/8    6/8  +3.28%   3.66%   +9.39%   4.62%    3  0.87  FAIR   2,032  0.89    1.51
+  EVTC    Evertec, Inc.       AMC   7/8    6/8  +2.97%   7.94%   +8.02%  11.06%   17   N/A  -        123  thin    thin
+  DK      Delek US Holdings…  BMO   8/8    6/8  +2.54%   4.53%  +24.62%  12.33%   16   N/A  -        116  thin    thin
+  RPC     Ridgepost Capital…  BMO   7/8    6/8  +1.75%   3.08%  +16.45%     N/A   16   N/A  -          0  thin    thin
+  TALO    Talos Energy, Inc.  AMC   6/8    6/8  +1.54%   6.32%  +12.65%  11.06%   17   N/A  -         67  thin    thin
+  NICE    NICE Ltd            BMO   8/8    6/8  +1.06%   2.69%   +3.58%  11.33%   16   N/A  -        829  0.19    0.09
+
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 1 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Ticker  Company     Time  EPS  React     Avg  |Avg|      Mom     IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
+  ──────  ──────────  ────  ───  ─────  ──────  ─────  ───────  ─────  ───  ────  ────  ──────  ────  ──────
+  AGNT    AGNT, Inc.  AMC   7/8    6/8  -3.98%  9.53%  -19.13%  7.93%   17   N/A  -         56  thin    thin
+
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
+
+  FTK     -3.14%, +6.19%, +1.57%, +1.01%, +42.16%, +1.65%, +23.00%, -8.29%
+  LAW     +7.80%, +7.97%, +9.65%, +6.30%, +9.92%, +5.00%, -5.34%, -2.41%
+  CRCT    +5.21%, +4.63%, -5.19%, +16.91%, +20.32%, +4.21%, -15.22%, +7.86%
+  EMR     +6.94%, +3.43%, -0.72%, -0.82%, +2.29%, +2.18%, +7.81%, +5.09%
+  EVTC    -17.05%, +9.86%, -2.81%, +10.31%, +2.54%, +16.11%, +3.04%, +1.77%
+  DK      -0.17%, +9.21%, +0.79%, +3.49%, +8.76%, -7.80%, +1.97%, +4.08%
+  RPC     -3.77%, +2.35%, +1.83%, +3.65%, +2.72%, -1.55%, +2.82%, +5.92%
+  TALO    -5.41%, -13.71%, +2.30%, +0.77%, +4.38%, +5.30%, +1.70%, +16.97%
+  NICE    -1.25%, +5.50%, +1.06%, +4.15%, +1.44%, +1.17%, -5.25%, +1.68%
+  AGNT    -2.28%, +11.34%, -12.62%, -13.96%, -9.52%, -5.08%, -10.58%, +10.84%
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  FILTERS — all three must pass for a name to appear above
+
+    1. EPS        6+/8 beats  (BUY)   ·  6+/8 misses  (SHORT)
+    2. Reaction   6+/8 next-day closes up (BUY) or down (SHORT),
+                  and the average next-day move pointing the same way
+    3. Momentum   30-day pre-earnings price change positive (BUY)
+                  or negative (SHORT)
+
+  INFORMATIONAL — shown for context, does not filter anything
+
+    Avg       average SIGNED next-day move over the last 8 reports
+    |Avg|     average ABSOLUTE next-day move. This is the divisor behind
+              IM/H, so a small |Avg| inflates the ratio. Under ~1.5% there
+              is little move to trade even when the pattern is reliable.
+    Mom       price change over the ~21 trading days into earnings
+    IM        implied move from the ATM straddle, as % of spot, with any
+              intrinsic value removed first
+    DTE       days from the report date to the expiry used
+                0   the expiry settles right after the release, so the
+                    straddle is almost purely the earnings event
+                7+  the straddle also carries a week or more of ordinary
+                    time value that has nothing to do with earnings
+    IM/H      implied move ÷ historical average absolute move
+                RICH   > 1.15   options pricing a bigger move than history
+                FAIR   0.85–1.15
+                CHEAP  < 0.85   options pricing a smaller move than history
+              Blank when the expiry sits too far past the report to tell
+              the event apart from normal drift. A blank is not a neutral
+              reading — it means no reading was possible.
+    OptVol    total contracts traded in the expiry above (calls + puts).
+              This is your liquidity read — a few hundred contracts means
+              you may struggle to get filled at a sane price.
+    P/C       put volume ÷ call volume
+                < 0.70 bullish  ·  0.70–1.00 neutral  ·  > 1.00 bearish
+    Vol/OI    option volume ÷ open interest
+                > 1.00 fresh positioning  ·  < 0.50 quiet
+              Both read 'thin' below 250 contracts, where the ratio would
+              be arithmetic on a handful of trades rather than a signal.
+
+  Expiry selection depends on timing. An AMC report lands after the close,
+  so a same-day expiry settles before it and the next one is used. A BMO
+  report lands before the open, so the same-day expiry captures it.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Of 296 names in the universe:
+      266  did not meet the filters
+       15  had fewer than 8 reported quarters available
+        2  EPS fetch failed
+        3  price fetch failed
+
+  Data fetch failure rate: 1%  (2 of 296 attempted)
+
+  ENVIRONMENT
+    python      3.11.15 on Linux
+    yfinance    1.5.2
+    curl_cffi   0.16.0
+    pandas      2.3.3
+    requests    2.34.2
+    lxml        6.1.1
+    bs4         4.15.0

@@ -1,32 +1,32 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
-║                          WEEKLY EARNINGS SCREENER                          ║
-║                     week of 2026-08-03  →  2026-08-07                      ║
-║                       generated 2026-08-02 10:58 ET                        ║
+║                          DAILY EARNINGS SCREENER                           ║
+║                    AMC 2026-08-11   ·   BMO 2026-08-12                     ║
+║                       generated 2026-08-10 19:28 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
-  !!  Calendar failed for 2026-08-03: ConnectionError; 2026-08-04: Connect
-  !!  ionError; 2026-08-05: ConnectionError; 2026-08-06: ConnectionError; 
-  !!  2026-08-07: ConnectionError. The week is incompletely covered.
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  UNIVERSE      112 confirmed reports   (67 AMC · 45 BMO)
+  QUALIFIED       1 BUY   ·   2 SHORT
+  BUY          LITE
+  SHORT        WKSP, REED
 
-  UNIVERSE        0 unique names across the week
-                 Monday 2026-08-03         0
-                 Tuesday 2026-08-04        0
-                 Wednesday 2026-08-05      0
-                 Thursday 2026-08-06       0
-                 Friday 2026-08-07         0
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 1 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  QUALIFIED       0 BUY   ·   0 SHORT
+  Ticker  Company             Time  EPS  React     Avg  |Avg|     Mom      IM  DTE  IM/H  Flag  OptVol   P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ──────  ─────  ──────  ──────  ───  ────  ────  ──────  ────  ──────
+  LITE    Lumentum Holdings…  AMC   8/8    6/8  +6.27%  9.36%  +5.91%  11.51%    3   N/A  -     24,137  1.49    0.97
 
-━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 2 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  No stocks qualified.
+  Ticker  Company          Time  EPS  React     Avg  |Avg|      Mom   IM  DTE  IM/H  Flag  OptVol  P/C  Vol/OI
+  ──────  ───────────────  ────  ───  ─────  ──────  ─────  ───────  ───  ───  ────  ────  ──────  ───  ──────
+  WKSP    Worksport, Ltd.  AMC   6/8    7/8  -7.54%  8.51%  -12.83%  N/A    -   N/A  -        N/A  N/A     N/A
+  REED    Reed's, Inc.     AMC   8/8    6/8  -5.64%  8.83%  -22.06%  N/A    -   N/A  -        N/A  N/A     N/A
 
-━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
 
-  No stocks qualified.
+  LITE    -5.06%, +7.00%, +23.57%, +0.48%, +2.83%, -7.31%, +13.86%, +14.78%
+  WKSP    -8.38%, -22.93%, -0.23%, -3.83%, -11.48%, +3.88%, -15.75%, -1.63%
+  REED    -17.69%, -2.67%, +5.71%, -28.57%, -4.05%, -3.57%, +7.04%, -1.31%
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -75,22 +75,17 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Of 0 names in the universe:
-        0  did not meet the filters
-        0  had fewer than 8 reported quarters available
-        0  EPS fetch failed
+  Of 112 names in the universe:
+       83  did not meet the filters
+       25  had fewer than 8 reported quarters available
+        1  EPS fetch failed
         0  price fetch failed
 
-
-  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
-  Calendar failed for 2026-08-03: ConnectionError; 2026-08-04: ConnectionError; 2026-08-05: ConnectionError; 2026-08-06: ConnectionError; 2026-08-07: ConnectionError. The week is incompletely covered.
-
-  Weekly runs include names whose reporting time is still TBD;
-  the daily screener only takes confirmed AMC and BMO.
+  Data fetch failure rate: 1%  (1 of 112 attempted)
 
   ENVIRONMENT
     python      3.11.15 on Linux
-    yfinance    stub
+    yfinance    1.5.2
     curl_cffi   0.16.0
     pandas      2.3.3
     requests    2.34.2

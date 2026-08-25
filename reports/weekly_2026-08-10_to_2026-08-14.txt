@@ -1,22 +1,22 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                          WEEKLY EARNINGS SCREENER                          ║
-║                     week of 2026-08-03  →  2026-08-07                      ║
-║                       generated 2026-08-02 10:58 ET                        ║
+║                     week of 2026-08-10  →  2026-08-14                      ║
+║                       generated 2026-08-09 10:29 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
-  !!  Calendar failed for 2026-08-03: ConnectionError; 2026-08-04: Connect
-  !!  ionError; 2026-08-05: ConnectionError; 2026-08-06: ConnectionError; 
-  !!  2026-08-07: ConnectionError. The week is incompletely covered.
+  !!  Calendar failed for 2026-08-10: ConnectionError; 2026-08-11: Connect
+  !!  ionError; 2026-08-12: ConnectionError; 2026-08-13: ConnectionError; 
+  !!  2026-08-14: ConnectionError. The week is incompletely covered.
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   UNIVERSE        0 unique names across the week
-                 Monday 2026-08-03         0
-                 Tuesday 2026-08-04        0
-                 Wednesday 2026-08-05      0
-                 Thursday 2026-08-06       0
-                 Friday 2026-08-07         0
+                 Monday 2026-08-10         0
+                 Tuesday 2026-08-11        0
+                 Wednesday 2026-08-12      0
+                 Thursday 2026-08-13       0
+                 Friday 2026-08-14         0
 
   QUALIFIED       0 BUY   ·   0 SHORT
 
@@ -83,7 +83,7 @@
 
 
   *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
-  Calendar failed for 2026-08-03: ConnectionError; 2026-08-04: ConnectionError; 2026-08-05: ConnectionError; 2026-08-06: ConnectionError; 2026-08-07: ConnectionError. The week is incompletely covered.
+  Calendar failed for 2026-08-10: ConnectionError; 2026-08-11: ConnectionError; 2026-08-12: ConnectionError; 2026-08-13: ConnectionError; 2026-08-14: ConnectionError. The week is incompletely covered.
 
   Weekly runs include names whose reporting time is still TBD;
   the daily screener only takes confirmed AMC and BMO.

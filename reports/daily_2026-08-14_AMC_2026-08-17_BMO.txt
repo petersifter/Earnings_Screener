@@ -1,30 +1,18 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
-║                          WEEKLY EARNINGS SCREENER                          ║
-║                     week of 2026-08-03  →  2026-08-07                      ║
-║                       generated 2026-08-02 10:58 ET                        ║
+║                          DAILY EARNINGS SCREENER                           ║
+║                    AMC 2026-08-14   ·   BMO 2026-08-17                     ║
+║                       generated 2026-08-13 19:35 ET                        ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!  DATA FAILURE — THIS IS NOT A SCREENING RESULT
-  !!  Calendar failed for 2026-08-03: ConnectionError; 2026-08-04: Connect
-  !!  ionError; 2026-08-05: ConnectionError; 2026-08-06: ConnectionError; 
-  !!  2026-08-07: ConnectionError. The week is incompletely covered.
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-  UNIVERSE        0 unique names across the week
-                 Monday 2026-08-03         0
-                 Tuesday 2026-08-04        0
-                 Wednesday 2026-08-05      0
-                 Thursday 2026-08-06       0
-                 Friday 2026-08-07         0
-
+  UNIVERSE       15 confirmed reports   (11 AMC · 4 BMO)
   QUALIFIED       0 BUY   ·   0 SHORT
+  RESULT       No stocks qualified for this session.
 
-━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   No stocks qualified.
 
-━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names, strongest first  ━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 0 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   No stocks qualified.
 
@@ -75,22 +63,17 @@
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Of 0 names in the universe:
-        0  did not meet the filters
-        0  had fewer than 8 reported quarters available
-        0  EPS fetch failed
+  Of 15 names in the universe:
+        9  did not meet the filters
+        5  had fewer than 8 reported quarters available
+        1  EPS fetch failed
         0  price fetch failed
 
-
-  *** RUN ABORTED — THIS IS NOT A SCREENING RESULT ***
-  Calendar failed for 2026-08-03: ConnectionError; 2026-08-04: ConnectionError; 2026-08-05: ConnectionError; 2026-08-06: ConnectionError; 2026-08-07: ConnectionError. The week is incompletely covered.
-
-  Weekly runs include names whose reporting time is still TBD;
-  the daily screener only takes confirmed AMC and BMO.
+  Data fetch failure rate: 7%  (1 of 15 attempted)
 
   ENVIRONMENT
     python      3.11.15 on Linux
-    yfinance    stub
+    yfinance    1.5.2
     curl_cffi   0.16.0
     pandas      2.3.3
     requests    2.34.2

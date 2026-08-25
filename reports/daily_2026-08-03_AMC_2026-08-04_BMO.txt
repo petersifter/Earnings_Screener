@@ -1,0 +1,109 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                          DAILY EARNINGS SCREENER                           ║
+║                    AMC 2026-08-03   ·   BMO 2026-08-04                     ║
+║                       generated 2026-08-02 10:58 ET                        ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+  UNIVERSE      204 confirmed reports   (88 AMC · 116 BMO)
+  QUALIFIED       6 BUY   ·   3 SHORT
+  BUY          PAY, EVER, VVX, ROK, PFE, BR
+  SHORT        IBTA, OPAD, PPLI
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━  ▲  BUY LIST — 6 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Ticker  Company             Time  EPS  React      Avg   |Avg|      Mom      IM  DTE  IM/H  Flag   OptVol   P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ───────  ──────  ───────  ──────  ───  ────  ─────  ──────  ────  ──────
+  PAY     Paymentus Holding…  AMC   8/8    7/8  +12.47%  14.42%  +26.02%   6.01%   18   N/A  -         176  thin    thin
+  EVER    EverQuote, Inc.     AMC   8/8    6/8  +11.98%  16.92%   +1.45%  17.96%   18  0.72  CHEAP      26  thin    thin
+  VVX     V2X, Inc.           AMC   7/8    6/8   +5.51%   6.58%  +21.78%  10.29%   18   N/A  -          75  thin    thin
+  ROK     Rockwell Automati…  BMO   7/8    7/8   +1.80%   2.25%   +1.78%   9.77%   17   N/A  -         518  1.17    0.05
+  PFE     Pfizer, Inc.        BMO   8/8    6/8   +0.56%   2.07%   +4.64%   3.50%    3  1.28  RICH   31,873  0.34    0.45
+  BR      Broadridge Financ…  BMO   8/8    6/8   +0.19%   1.43%   +6.95%   7.34%   17   N/A  -         262  2.32    0.14
+
+━━━━━━━━━━━━━━━━━━━━━━━━━  ▼  SHORT LIST — 3 names  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Ticker  Company             Time  EPS  React      Avg   |Avg|      Mom      IM  DTE  IM/H  Flag   OptVol   P/C  Vol/OI
+  ──────  ──────────────────  ────  ───  ─────  ───────  ──────  ───────  ──────  ───  ────  ─────  ──────  ────  ──────
+  IBTA    Ibotta, Inc.        AMC   6/8    6/8  -11.39%  23.57%  -32.53%  21.35%   18  0.67  CHEAP     103  thin    thin
+  OPAD    Offerpad Solution…  AMC   6/8    8/8  -10.07%  10.07%  -26.84%  15.50%   74   N/A  -          23  thin    thin
+  PPLI    People Incorporat…  AMC   8/8    6/8   -3.74%   6.83%  -11.08%   5.58%   18   N/A  -          12  thin    thin
+
+  LOW MOVERS — average absolute move under 1.5%:
+    BR      1.43%   little room for an earnings move to pay for the risk
+  Informational only. Not filtered out.
+
+━━━━━━━━━━━━━━━━━━━  NEXT-DAY MOVE HISTORY — newest first  ━━━━━━━━━━━━━━━━━━━
+
+  PAY     -7.83%, +1.11%, +26.18%, +12.00%, +2.78%, +24.59%, +27.02%, +13.89%
+  EVER    +63.04%, +1.17%, +8.34%, -7.76%, -12.00%, +27.15%, +4.04%, +11.85%
+  VVX     +12.80%, +3.03%, -2.23%, +15.22%, -2.06%, +15.74%, +1.24%, +0.33%
+  ROK     +5.37%, +2.05%, +0.27%, +1.19%, +2.85%, +0.47%, -1.79%, +4.01%
+  PFE     +0.30%, +3.92%, +1.28%, -3.31%, +2.61%, +2.20%, +0.21%, -2.71%
+  BR      +0.82%, +2.24%, -1.92%, +0.59%, +2.15%, +0.18%, +0.53%, -3.04%
+  IBTA    -0.59%, +28.54%, -23.68%, -30.28%, +20.17%, -46.09%, -12.52%, -26.69%
+  OPAD    -15.57%, -3.70%, -24.78%, -6.67%, -7.57%, -3.64%, -3.36%, -15.27%
+  PPLI    -8.43%, -3.02%, -1.72%, -13.01%, -3.56%, +5.83%, -12.56%, +6.51%
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  HOW TO READ THIS  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  FILTERS — all three must pass for a name to appear above
+
+    1. EPS        6+/8 beats  (BUY)   ·  6+/8 misses  (SHORT)
+    2. Reaction   6+/8 next-day closes up (BUY) or down (SHORT),
+                  and the average next-day move pointing the same way
+    3. Momentum   30-day pre-earnings price change positive (BUY)
+                  or negative (SHORT)
+
+  INFORMATIONAL — shown for context, does not filter anything
+
+    Avg       average SIGNED next-day move over the last 8 reports
+    |Avg|     average ABSOLUTE next-day move. This is the divisor behind
+              IM/H, so a small |Avg| inflates the ratio. Under ~1.5% there
+              is little move to trade even when the pattern is reliable.
+    Mom       price change over the ~21 trading days into earnings
+    IM        implied move from the ATM straddle, as % of spot, with any
+              intrinsic value removed first
+    DTE       days from the report date to the expiry used
+                0   the expiry settles right after the release, so the
+                    straddle is almost purely the earnings event
+                7+  the straddle also carries a week or more of ordinary
+                    time value that has nothing to do with earnings
+    IM/H      implied move ÷ historical average absolute move
+                RICH   > 1.15   options pricing a bigger move than history
+                FAIR   0.85–1.15
+                CHEAP  < 0.85   options pricing a smaller move than history
+              Blank when the expiry sits too far past the report to tell
+              the event apart from normal drift. A blank is not a neutral
+              reading — it means no reading was possible.
+    OptVol    total contracts traded in the expiry above (calls + puts).
+              This is your liquidity read — a few hundred contracts means
+              you may struggle to get filled at a sane price.
+    P/C       put volume ÷ call volume
+                < 0.70 bullish  ·  0.70–1.00 neutral  ·  > 1.00 bearish
+    Vol/OI    option volume ÷ open interest
+                > 1.00 fresh positioning  ·  < 0.50 quiet
+              Both read 'thin' below 250 contracts, where the ratio would
+              be arithmetic on a handful of trades rather than a signal.
+
+  Expiry selection depends on timing. An AMC report lands after the close,
+  so a same-day expiry settles before it and the next one is used. A BMO
+  report lands before the open, so the same-day expiry captures it.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  SCREENING NOTES  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Of 204 names in the universe:
+      181  did not meet the filters
+        9  had fewer than 8 reported quarters available
+        4  EPS fetch failed
+        1  price fetch failed
+
+  Data fetch failure rate: 2%  (4 of 204 attempted)
+
+  ENVIRONMENT
+    python      3.11.15 on Linux
+    yfinance    1.5.2
+    curl_cffi   0.16.0
+    pandas      2.3.3
+    requests    2.34.2
+    lxml        6.1.1
+    bs4         4.15.0

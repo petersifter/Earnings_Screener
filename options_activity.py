@@ -22,11 +22,13 @@ trading day. Pre-market it reflects yesterday's final volume.
 import yfinance as yf
 from datetime import datetime
 
+import config
+
 from yf_fetch import yahoo_symbol
 
 
 def get_options_activity(ticker, earnings_date, timing='AMC',
-                         min_volume=250):
+                         min_volume=None):
     """
     Compute put/call and volume/OI ratios for the front-month expiration.
 
@@ -38,6 +40,7 @@ def get_options_activity(ticker, earnings_date, timing='AMC',
         dict with put_call_ratio, pc_signal, vol_oi_ratio, voi_signal,
         total_call_volume, total_put_volume, total_oi, expiration, error
     """
+    min_volume = config.MIN_OPTION_VOLUME if min_volume is None else min_volume
     result = {
         'put_call_ratio': None,
         'pc_signal': None,
@@ -111,9 +114,9 @@ def get_options_activity(ticker, earnings_date, timing='AMC',
         if call_vol > 0:
             pc = put_vol / call_vol
             result['put_call_ratio'] = round(pc, 2)
-            if pc < 0.7:
+            if pc < config.PUT_CALL_BULLISH:
                 result['pc_signal'] = 'BULLISH'
-            elif pc > 1.0:
+            elif pc > config.PUT_CALL_BEARISH:
                 result['pc_signal'] = 'BEARISH'
             else:
                 result['pc_signal'] = 'NEUTRAL'
@@ -124,9 +127,9 @@ def get_options_activity(ticker, earnings_date, timing='AMC',
         if total_oi > 0:
             voi = total_vol / total_oi
             result['vol_oi_ratio'] = round(voi, 2)
-            if voi > 1.0:
+            if voi > config.VOL_OI_FRESH:
                 result['voi_signal'] = 'FRESH'
-            elif voi > 0.5:
+            elif voi > config.VOL_OI_ELEVATED:
                 result['voi_signal'] = 'ELEVATED'
             else:
                 result['voi_signal'] = 'QUIET'

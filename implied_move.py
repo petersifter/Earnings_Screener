@@ -12,6 +12,8 @@ Informational only — does not filter tickers.
 import yfinance as yf
 from datetime import datetime
 
+import config
+
 from yf_fetch import yahoo_symbol
 from zoneinfo import ZoneInfo
 
@@ -193,7 +195,7 @@ def get_implied_move(ticker, earnings_date, historical_avg_move_pct,
         # trailing realized vol, which is inflated precisely when the stock has
         # just run — i.e. on the momentum names this screener selects for. Below
         # this DTE we take the total and skip the decomposition.
-        EVENT_DOMINANT_DTE = 1
+        EVENT_DOMINANT_DTE = config.EVENT_DOMINANT_DTE
 
         event_move = None
         if result['dte'] is not None and result['dte'] <= EVENT_DOMINANT_DTE:
@@ -211,16 +213,16 @@ def get_implied_move(ticker, earnings_date, historical_avg_move_pct,
             result['event_share'] = round(share, 3)
 
         warnings_found = []
-        if offset_pct > 2.0:
+        if offset_pct > config.STRIKE_OFFSET_WARN_PCT:
             warnings_found.append(
                 f'nearest strike is {offset_pct:.1f}% from spot')
-        if result['dte'] is not None and result['dte'] > 10:
+        if result['dte'] is not None and result['dte'] > config.DTE_WARN_DAYS:
             warnings_found.append(
                 f"expiry is {result['dte']}d after earnings, so this covers "
                 f"more than the event")
         result['warning'] = '; '.join(warnings_found) or None
 
-        MIN_EVENT_SHARE = 0.30   # event must be >~55% of the implied move
+        MIN_EVENT_SHARE = config.MIN_EVENT_SHARE
 
         if not historical_avg_move_pct or historical_avg_move_pct <= 0:
             return result
@@ -248,9 +250,9 @@ def get_implied_move(ticker, earnings_date, historical_avg_move_pct,
 
         ratio = basis / historical_avg_move_pct
         result['ratio'] = round(ratio, 2)
-        if ratio > 1.15:
+        if ratio > config.RICH_RATIO:
             result['flag'] = 'RICH'
-        elif ratio < 0.85:
+        elif ratio < config.CHEAP_RATIO:
             result['flag'] = 'CHEAP'
         else:
             result['flag'] = 'FAIR'
@@ -278,7 +280,7 @@ def format_implied_move_line(im):
             f"Ratio: {ratio} [{flag}]" + suffix)
 
 
-def realized_daily_vol(prices, earnings_dates=None, lookback=60):
+def realized_daily_vol(prices, earnings_dates=None, lookback=None):
     """
     Close-to-close daily volatility in percent, for the diffusive component.
 
@@ -286,6 +288,7 @@ def realized_daily_vol(prices, earnings_dates=None, lookback=60):
     contain the event we are trying to isolate and would otherwise inflate the
     baseline. Returns None if there isn't enough clean data.
     """
+    lookback = config.VOL_LOOKBACK_DAYS if lookback is None else lookback
     try:
         closes = prices['Close'].dropna()
         if len(closes) < 25:

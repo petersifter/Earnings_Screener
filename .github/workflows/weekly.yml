@@ -30,7 +30,7 @@ jobs:
           SCREENER_SPACING: '0.5'
         run: |
           set -o pipefail
-          echo "2" | python weekly_screener.py
+          python weekly_screener.py --next-week
 
       # always() so the failure email can still attach the diagnosis.
       - name: Load report metadata
@@ -51,6 +51,7 @@ jobs:
             git config user.email "actions@github.com"
             git add reports/
             git commit -m "Weekly ${{ env.REPORT_NAME }}"
+            git pull --rebase
             git push
           else
             echo "nothing to commit"

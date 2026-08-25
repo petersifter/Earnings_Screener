@@ -20,6 +20,8 @@ import random
 
 import yfinance as yf
 
+import config
+
 # Seconds to wait between tickers. Yahoo tolerates a steady trickle far better
 # than a burst of several hundred requests. Set SCREENER_SPACING=0.5 in CI.
 REQUEST_SPACING = float(os.environ.get("SCREENER_SPACING", "0"))
@@ -36,12 +38,12 @@ ERROR = "fetch error"
 MISSING_DEP = "missing dependency"
 
 
-def _sleep_backoff(attempt, base=1.5):
+def _sleep_backoff(attempt, base=config.BACKOFF_BASE_SECONDS):
     """Exponential backoff with jitter, so parallel retries don't sync up."""
     time.sleep(base * (2 ** attempt) + random.uniform(0, 0.75))
 
 
-def _retry(fn, retries=3, base=1.5):
+def _retry(fn, retries=config.FETCH_RETRIES, base=config.BACKOFF_BASE_SECONDS):
     """
     Call fn(). Returns (result, reason).
     Retries on rate limits and on empty results, since yfinance reports
@@ -94,7 +96,7 @@ def pace():
         time.sleep(REQUEST_SPACING + random.uniform(0, REQUEST_SPACING / 2))
 
 
-def fetch_eps_history(ticker, limit=24, retries=3):
+def fetch_eps_history(ticker, limit=24, retries=config.FETCH_RETRIES):
     """
     Earnings history for a ticker.
 
@@ -129,7 +131,8 @@ class CircuitBreaker:
     Trips when the first `check_after` tickers ALL failed to return data.
     """
 
-    def __init__(self, check_after=20, threshold=1.0):
+    def __init__(self, check_after=config.CIRCUIT_BREAKER_CHECK_AFTER,
+                 threshold=1.0):
         self.check_after = check_after
         self.threshold = threshold
         self.attempted = 0
@@ -151,7 +154,7 @@ class CircuitBreaker:
     @property
     def tripped_early(self):
         """A missing library fails deterministically. Stop after 3, not 20."""
-        return self.missing_dep >= 3
+        return self.missing_dep >= config.MISSING_DEP_ABORT_AFTER
 
     @property
     def tripped(self):

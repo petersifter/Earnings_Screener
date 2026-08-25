@@ -13,7 +13,7 @@ Actions.
 
 ## What this is not
 
-It is not backtested. The filters are a conjunction of conditions that look
+It is not backtested (NEXT STEP!). The filters are a conjunction of conditions that look
 sensible; nothing here measures whether they predict the next quarter, and
 screening on eight quarters of realised beats is close to selecting on the
 outcome. Treat the output as a watchlist, not a signal.
